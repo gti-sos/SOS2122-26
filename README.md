@@ -53,3 +53,17 @@ List of projects registered in the course of **Service Oriented Systems** (2021/
     - [https://sos2021-00.herokuapp.com/api/v1/my-awesome-resource-1/docs](https://sos2021-00.herokuapp.com/api/v1/my-awesome-resource-1/docs) (developed by [Roque Fernandez Iglesias](https://github.com/roque-fernandez))
     - [https://sos2021-00.herokuapp.com/api/v1/my-awesome-resource-2/docs](https://sos2021-00.herokuapp.com/api/v1/my-awesome-resource-2/docs) (developed by [Fco Alexis Morales Vallado](https://github.com/famvcucu))
     - [https://sos2021-00.herokuapp.com/api/v1/my-awesome-resource-3/docs](https://sos2021-00.herokuapp.com/api/v1/my-awesome-resource-3/docs) (developed by [Student 3](https://github.com/404))
+
+## SOS2122-23
+
+- **Team**
+  - [Alberto Martín Martín](https://github.com/albmarmar6)
+  - [Fernando Pardo Beltrán](https://github.com/Nando13-hub)
+  - [Antonio Saborido Campos](https://github.com/Antoniiosc7)
+- **Project description**: Relación de deportes entre fútbol (Premier League), tenis y baloncesto (NBA)
+- **Repository**: [gti-sos/SOS2122-23](https://github.com/gti-sos/SOS2122-23)
+- **URL**: [http://sos2122-23.herokuapp.com](http://sos2122-23.herokuapp.com)
+-  **APIs**:
+    - [https://sos2122-23.herokuapp.com/api/v1/my-awesome-resource-1/docs](https://sos2122-23.herokuapp.com/api/v1/my-awesome-resource-1/docs) (developed by [Alberto Martín Martín] (https://github.com/albmarmar6))
+    - [https://sos2122-23.herokuapp.com/api/v1/my-awesome-resource-2/docs](https://sos2122-23.herokuapp.com/api/v1/my-awesome-resource-2/docs) (developed by [Fernando Pardo Beltrán] (https://github.com/Nando13))
+    - [https://sos2122-23.herokuapp.com/api/v1/my-awesome-resource-3/docs](https://sos2122-23.herokuapp.com/api/v1/my-awesome-resource-3/docs) (developed by [Antonio Saborido Campos] (https://github.com/Antoniiosc7))

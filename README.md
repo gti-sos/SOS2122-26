@@ -141,3 +141,18 @@ List of projects registered in the course of **Service Oriented Systems** (2021/
     - [https://sos2021-10.herokuapp.com/api/v1/my-awesome-resource-1/docs](https://sos2021-10.herokuapp.com/api/v1/my-awesome-resource-1/docs) (developed by [Alejandro Molinos Eligio](https://github.com/AlejandroMolinosEligio))
     - [https://sos2021-10.herokuapp.com/api/v1/my-awesome-resource-2/docs](https://sos2021-10.herokuapp.com/api/v1/my-awesome-resource-2/docs) (developed by [Gabriel López Bellido](https://github.com/gabriellb99))
     - [https://sos2021-10.herokuapp.com/api/v1/my-awesome-resource-3/docs](https://sos2021-10.herokuapp.com/api/v1/my-awesome-resource-3/docs) (developed by [Germán Blanco Pérez Victoria](https://github.com/germanblanco12))
+
+
+    ## SOS2122-24
+
+- **Team**
+  - [Raul Gomez Morales](https://github.com/Rgm13)
+  - [Student 2](https://github.com/404)
+  - [Student 3](https://github.com/404)
+- **Project description**: Nuestras trabajo esta orientadas a analizar la relación que existe entre la tasa de muertes por neumonia, la tasa de muertes por cancer y la contaminacion del aire en interiores
+- **Repository**: [gti-sos/SOS2122-24](https://github.com/gti-sos/SOS2122-24.git)
+- **URL**: [http://sos2122-24.herokuapp.com](http://sos2122-24.herokuapp.com)
+-  **APIs**:
+    - [https://sos2122-24.herokuapp.com/api/v1/my-awesome-resource-1/docs](https://sos2122-24.herokuapp.com/api/v1/my-awesome-resource-1/docs) (developed by [Raul Gomez Morales](https://github.com/Rgm13))
+    - [https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-2/docs](https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-2/docs) (developed by [Student 2](https://github.com/404))
+    - [https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-3/docs](https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-3/docs) (developed by [Student 3](https://github.com/404))

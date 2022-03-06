@@ -148,14 +148,14 @@ List of projects registered in the course of **Service Oriented Systems** (2021/
 - **Team**
   - [Raul Gomez Morales](https://github.com/Rgm13)
   - [Laura Martinez Sanchez](https://github.com/Lauramartinezsanchez)
-  - [Student 3](https://github.com/404)
+  - [Alicia Campos Castello](https://github.com/AliciaCamposCastello)
 - **Project description**: Nuestras trabajo esta orientadas a analizar la relación que existe entre la tasa de muertes por neumonia, la tasa de muertes por cancer y la contaminacion del aire en interiores
 - **Repository**: [gti-sos/SOS2122-24](https://github.com/gti-sos/SOS2122-24.git)
 - **URL**: [http://sos2122-24.herokuapp.com](http://sos2122-24.herokuapp.com)
 -  **APIs**:
     - [https://sos2122-24.herokuapp.com/api/v1/my-awesome-resource-1/docs](https://sos2122-24.herokuapp.com/api/v1/my-awesome-resource-1/docs) (developed by [Raul Gomez Morales](https://github.com/Rgm13))
     - [https://sos2122-24.herokuapp.com/api/v1/my-awesome-resource-2/docs](https://sos2122-24.herokuapp.com/api/v1/my-awesome-resource-2/docs) (developed by [Laura Martinez Sanchez](https://github.com/Lauramartinezsanchez))
-    - [https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-3/docs](https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-3/docs) (developed by [Student 3](https://github.com/404))
+    - [https://sos2122-24.herokuapp.com/api/v1/my-awesome-resource-3/docs](https://sos2122-24.herokuapp.com/api/v1/my-awesome-resource-3/docs) (developed by [Alicia Campos Castello](https://github.com/AliciaCamposCastello))
 
     ## SOS2122-31
 
@@ -216,4 +216,7 @@ List of projects registered in the course of **Service Oriented Systems** (2021/
     - [https://sos2122-25.herokuapp.com/api/v1/my-awesome-resource-1/docs](https://sos2122-25.herokuapp.com/api/v1/my-awesome-resource-1/docs) (developed by [Damián González Carrasco](https://github.com/Damiangc99))
     - [https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-2/docs](https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-2/docs) (developed by [Student 2](https://github.com/404))
     - [https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-3/docs](https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-3/docs) (developed by [Student 3](https://github.com/404))
+
+
+
 

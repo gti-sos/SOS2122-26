@@ -193,7 +193,7 @@ List of projects registered in the course of **Service Oriented Systems** (2021/
   - [Javier	Alonso	Yáñez](https://github.com/alonyanez)
   - [Jaime	Quintero	Sicre](https://github.com/Jaiquisic23)
 - **Project description**: Análisis de la relación que existe entre las fuentes de contaminación de diferentes tecnologías de última generación
-- **Repository**: [gti-sos/SOS2122-20](https://github.com/gti-sos/SOS2122-30)
+- **Repository**: [gti-sos/SOS2122-30](https://github.com/gti-sos/SOS2122-30)
 - **URL**: [http://sos2122-00.herokuapp.com](http://sos2122-00.herokuapp.com)
 -  **APIs**:
     - [https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-1/docs](https://sos2122-20.herokuapp.com/api/v1/my-awesome-resource-1/docs) (developed by [Sergio Velázquez García](https://github.com/Servelgar))

@@ -226,7 +226,7 @@ List of projects registered in the course of **Service Oriented Systems** (2021/
   - [Student 2](https://github.com/404)
   - [Student 3](https://github.com/404)
 - **Project description**: Relación entre energía generada, gasto en defensa y ...
-- **Repository**: [gti-sos/SOS2122-00](https://github.com/gti-sos/SOS2122-26)
+- **Repository**: [gti-sos/SOS2122-26](https://github.com/gti-sos/SOS2122-26)
 - **URL**: [http://sos2122-00.herokuapp.com](http://sos2122-00.herokuapp.com)
 -  **APIs**:
     - [https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-1/docs](https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-1/docs) (developed by [Manuel Jesús González Bueno](https://github.com/404))

@@ -199,3 +199,21 @@ List of projects registered in the course of **Service Oriented Systems** (2021/
     - [https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-1/docs](https://sos2122-20.herokuapp.com/api/v1/my-awesome-resource-1/docs) (developed by [Sergio Velázquez García](https://github.com/Servelgar))
     - [https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-2/docs](https://sos2122-20.herokuapp.com/api/v1/my-awesome-resource-2/docs) (developed by [Javier	Alonso	Yáñez](https://github.com/alonyanez))
     - [https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-3/docs](https://sos2122-20.herokuapp.com/api/v1/my-awesome-resource-3/docs) (developed by [Jaime	Quintero	Sicre](https://github.com/Jaiquisic23))
+
+
+
+
+## SOS2122-00
+
+- **Team**
+  - [Damián González Carrasco](https://github.com/Damiangc99)
+  - [Student 2](https://github.com/404)
+  - [Student 3](https://github.com/404)
+- **Project description**: la relación que existe entre esperanza de vida,  el INB mundial y Comercio
+- **Repository**: [gti-sos/SOS2122-25](https://github.com/gti-sos/SOS2122-25)
+- **URL**: [http://sos2122-25.herokuapp.com](http://sos2122-25.herokuapp.com)
+-  **APIs**:
+    - [https://sos2122-25.herokuapp.com/api/v1/my-awesome-resource-1/docs](https://sos2122-25.herokuapp.com/api/v1/my-awesome-resource-1/docs) (developed by [Damián González Carrasco](https://github.com/Damiangc99))
+    - [https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-2/docs](https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-2/docs) (developed by [Student 2](https://github.com/404))
+    - [https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-3/docs](https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-3/docs) (developed by [Student 3](https://github.com/404))
+

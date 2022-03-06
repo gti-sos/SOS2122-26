@@ -118,7 +118,7 @@ List of projects registered in the course of **Service Oriented Systems** (2021/
 - **Team**
   - [Jesús Vena Campos](https://github.com/jesvencam)
   - [Belén Rodriguez Salazar ](https://github.com/beldruxs)
-  - [Marcos Saa Martinez](https://github.com/MarcoSaa01)
+  - [Marcos Saa Martínez](https://github.com/MarcoSaa01)
 - **Project description**: Nuesto proyecto consta en analizar la relación existente entre las emisiones de CO2, la produccion de carbón y la balanza comercial entre diferentes paises en relacion a los ultimos años. 
 - **Repository**: [gti-sos/SOS2122-22](https://github.com/gti-sos/SOS2122-22.git)
 - **URL**: [http://sos2122-22.herokuapp.com](http://sos2122-22.herokuapp.com)

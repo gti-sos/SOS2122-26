@@ -179,8 +179,23 @@ List of projects registered in the course of **Service Oriented Systems** (2021/
   - [Student 3](https://github.com/404)
 - **Project description**: Análisis de la variación del uso de tierras(edificadas,cultivo,pasto),abono, y producción del cereal a escala global.
 - **Repository**: [gti-sos/SOS2122-20](https://github.com/gti-sos/SOS2122-20)
-- **URL**: [http://sos2122-00.herokuapp.com](http://sos2122-00.herokuapp.com)
+- **URL**: [http://sos2122-30.herokuapp.com](http://sos2122-30.herokuapp.com)
 -  **APIs**:
     - [https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-1/docs](https://sos2122-20.herokuapp.com/api/v1/my-awesome-resource-1/docs) (developed by [Daniel Puche Jiménez](https://github.com/danpucjim))
     - [https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-2/docs](https://sos2122-20.herokuapp.com/api/v1/my-awesome-resource-2/docs) (developed by [Alejandro Jorge Poyuelo](https://github.com/alexjorge-04))
     - [https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-3/docs](https://sos2122-20.herokuapp.com/api/v1/my-awesome-resource-3/docs) (developed by [Student 3](https://github.com/404))
+
+
+    ## SOS2122-30
+
+- **Team**
+  - [Sergio Velázquez García](https://github.com/Servelgar)
+  - [Javier	Alonso	Yáñez](https://github.com/alonyanez)
+  - [Jaime	Quintero	Sicre](https://github.com/Jaiquisic23)
+- **Project description**: Análisis de la relación que existe entre las fuentes de contaminación de diferentes tecnologías de última generación
+- **Repository**: [gti-sos/SOS2122-20](https://github.com/gti-sos/SOS2122-30)
+- **URL**: [http://sos2122-00.herokuapp.com](http://sos2122-00.herokuapp.com)
+-  **APIs**:
+    - [https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-1/docs](https://sos2122-20.herokuapp.com/api/v1/my-awesome-resource-1/docs) (developed by [Sergio Velázquez García](https://github.com/Servelgar))
+    - [https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-2/docs](https://sos2122-20.herokuapp.com/api/v1/my-awesome-resource-2/docs) (developed by [Javier	Alonso	Yáñez](https://github.com/alonyanez))
+    - [https://sos2122-00.herokuapp.com/api/v1/my-awesome-resource-3/docs](https://sos2122-20.herokuapp.com/api/v1/my-awesome-resource-3/docs) (developed by [Jaime	Quintero	Sicre](https://github.com/Jaiquisic23))

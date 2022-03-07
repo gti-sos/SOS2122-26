@@ -44,7 +44,7 @@ List of projects registered in the course of **Service Oriented Systems** (2021/
 
 - **Team**
   - [Antonio Maiquez Marin](https://github.com/Jackman97)
-  - [David Sousa Gonzalez](https://github.com/famvcucu)
+  - [David Sousa Gonzalez](https://github.com/dasougon7)
   - [Ignacion Mauri Caceres](https://github.com/404)
 - **Project description**: Nuestras fuentes de información esta orientadas a analizar la relación que existe entre el nivel de desigualdad economica, el PIB y el numero de parados a nivel mundial
 - **Repository**: [gti-sos/SOS2122-11](https://github.com/gti-sos/gti-sos-SOS2122-11)

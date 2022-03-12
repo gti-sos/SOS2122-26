@@ -4,7 +4,9 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 8080;
 
-app.get("/",(req,res)=>{
+app.arguments("/"express.static('public'))
+
+app.get("/faces",(req,res)=>{
     console.log("requested / route")
     res.send("<html><body><h1>"+cool()+"</h1></body></html>")
 });

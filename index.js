@@ -6,7 +6,7 @@ const port = process.env.PORT || 8080;
 
 app.use("/",express.static('public'))
 
-app.get("/faces",(req,res)=>{
+app.get("/cool",(req,res)=>{
     console.log("requested / route")
     res.send("<html><body><h1>"+cool()+"</h1></body></html>")
 });

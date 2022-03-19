@@ -47,11 +47,11 @@ app.get(BASE_API_URL+"/defense_spent_stats/:country", (req,res)=>{
         return (defense.country == defenseCountry);
     });
 
-    if(filteredCountries.length == 0){
+    if(filteredCountries == 0){
         res.sendStatus(404, "NOT FOUND");
 
     }else{
-        res.send(JSON.stringify(filteredCountries, null, 2));
+        res.send(JSON.stringify(filteredCountries[0], null, 2));
     }
 });
 

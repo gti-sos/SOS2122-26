@@ -1,5 +1,6 @@
 const cool = require("cool-ascii-faces");
 const express = require("express");
+const bodyParser = require("body-parser");
 
 const app = express();
 app.use(bodyParser.json());
@@ -36,11 +37,11 @@ var defense_spent_stats = [
 
 //GET
 
-app.get(BASE_API_URL+"/defense_spent_stats", (req,res)=>{
+app.get(BASE_API_URL+ "/defense_spent_stats", (req,res)=>{
     res.send(JSON.stringify(defense_spent_stats,null,2));
 });
  
-app.get(BASE_API_URL+"/defense_spent_stats/:country", (req,res)=>{
+app.get(BASE_API_URL+ "/defense_spent_stats/:country", (req,res)=>{
     
     var defenseCountry = req.params.country;
     var filteredCountries = defense_spent_stats.filter((defense)=>{
@@ -57,7 +58,7 @@ app.get(BASE_API_URL+"/defense_spent_stats/:country", (req,res)=>{
 
 //POST
 
-app.post(BASE_API_URL+"/defense_spent_stats", (req,res)=>{
+app.post(BASE_API_URL+ "/defense_spent_stats", (req,res)=>{
     defense_spent_stats.push(req.body);
     res.sendStatus(201, "CREATED");
 });

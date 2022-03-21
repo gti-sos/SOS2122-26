@@ -14,7 +14,6 @@
   "author": "bruno Alvaro rico Barrilero",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.2",
     "cool-ascii-faces": "^1.3.4",
     "express": "^4.17.3"
   },

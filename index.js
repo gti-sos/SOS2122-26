@@ -2,12 +2,11 @@ const cool = require("cool-ascii-faces");
 const express = require("express");
 const bodyParser = require("body-parser");
 
-const app = express();
-app.use(bodyParser.json());
-
 const port = process.env.PORT || 8080;
+const app = express();
 
-app.use("/",express.static('public'))
+app.use(bodyParser.json());
+app.use("/",express.static('public'));
 
 app.get("/cool",(req,res)=>{
     console.log("requested / route")
@@ -40,21 +39,7 @@ var defense_spent_stats = [
 app.get(BASE_API_URL+ "/defense_spent_stats", (req,res)=>{
     res.send(JSON.stringify(defense_spent_stats,null,2));
 });
- 
-app.get(BASE_API_URL+ "/defense_spent_stats/:country", (req,res)=>{
-    
-    var defenseCountry = req.params.country;
-    var filteredCountries = defense_spent_stats.filter((defense)=>{
-        return (defense.country == defenseCountry);
-    });
 
-    if(filteredCountries == 0){
-        res.sendStatus(404, "NOT FOUND");
-
-    }else{
-        res.send(JSON.stringify(filteredCountries[0], null, 2));
-    }
-});
 
 //POST
 

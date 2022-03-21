@@ -1,13 +1,13 @@
 const cool = require("cool-ascii-faces");
 const express = require("express");
 const bodyParser = require("body-parser");
+const BASE_API_URL = "/api/v1"
 
 const app = express();
-app.use(bodyParser.json());
-
 const port = process.env.PORT || 8080;
 
-app.use("/",express.static('public'))
+app.use("/",express.static('public'));
+app.use(bodyParser.json());
 
 app.get("/cool",(req,res)=>{
     console.log("requested / route")
@@ -19,11 +19,7 @@ app.listen(port,()=>{
 }); 
 console.log(`Servidor listo ${port}`);
 
-
 //--------------------- Parte opcional Pablo Galán ---------------------
-
-//Array de objetos
-const BASE_API_URL = "/api/v1"
 
 var defense_spent_stats = [ 
     { country: spain, year: 2020 , spen_mill_eur : 15730.3 , public_percent: 2.66, pib_percent: 1.40, per_capita: 332, var: 4.46 },
@@ -41,24 +37,9 @@ app.get(BASE_API_URL+ "/defense_spent_stats", (req,res)=>{
     res.send(JSON.stringify(defense_spent_stats,null,2));
 });
  
-app.get(BASE_API_URL+ "/defense_spent_stats/:country", (req,res)=>{
-    
-    var defenseCountry = req.params.country;
-    var filteredCountries = defense_spent_stats.filter((defense)=>{
-        return (defense.country == defenseCountry);
-    });
-
-    if(filteredCountries == 0){
-        res.sendStatus(404, "NOT FOUND");
-
-    }else{
-        res.send(JSON.stringify(filteredCountries[0], null, 2));
-    }
-});
-
 //POST
 
 app.post(BASE_API_URL+ "/defense_spent_stats", (req,res)=>{
     defense_spent_stats.push(req.body);
-    res.sendStatus(201, "CREATED");
+    res.sendStatus(201,"CREATED");
 });

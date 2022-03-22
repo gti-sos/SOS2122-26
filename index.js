@@ -342,14 +342,14 @@ var developement_indicators_stats = [
 //GET
 
 app.get(BASE_API_URL+ "/developement-indicators-stats", (req,res)=>{
-    res.send(JSON.stringify(developement-indicators-stats,null,2));
+    res.send(JSON.stringify(developement_indicators_stats,null,2));
 });
 
 
 //POST
 
 app.post(BASE_API_URL+ "/developement-indicators-stats", (req,res)=>{
-    developement-indicators-stats.push(req.body);
+    developement_indicators_stats.push(req.body);
     res.sendStatus(201, "CREATED");
 });
 

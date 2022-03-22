@@ -29,7 +29,7 @@ const BASE_API_URL = "/api/v1";
 
 
 
-//--------------------- Parte opcional Pablo Galán ---------------------
+//--------------------- API REST de Pablo Galán ---------------------
 
 //Array de objetos
 const BASE_API_URL_DEFENSE = "/api/v1/defense-spent-stats";
@@ -48,7 +48,12 @@ var defense_spent_stats = [
     {country: "france" , year: 2019, spen_mill_eur : 44986.30 , public_percent: 3.32 , pib_percent: 1.85 , per_capita: 665, var: -2.37 }
 ];
 
+//Portal de Documentacion
 
+app.get(BASE_API_URL_DEFENSE+"/docs",(req,res)=>
+{
+    res.redirect("https://documenter.getpostman.com/view/19481608/UVsSLhi1");
+});
 
 
 

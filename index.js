@@ -5,8 +5,12 @@ const bodyParser = require("body-parser");
 const app = express();
 const port = process.env.PORT || 8080;
 
+
+
 app.use("/",express.static('public'));
 app.use(bodyParser.json());
+
+
 
 app.get("/cool",(req,res)=>{
     console.log("requested / route")
@@ -16,36 +20,268 @@ app.get("/cool",(req,res)=>{
 app.listen(port,()=>{
     console.log(`Server TRULY ready at port ${port}`);
 }); 
+
 console.log(`Servidor listo ${port}`);
+
+
+const BASE_API_URL = "/api/v1";
+
+
+
 
 //--------------------- Parte opcional Pablo Galán ---------------------
 
 //Array de objetos
-const BASE_API_URL = "/api/v1"
+const BASE_API_URL_DEFENSE = "/api/v1/defense-spent-stats";
 
 var defense_spent_stats = [ 
     { country: "spain", year: 2020 , spen_mill_eur : 15730.3 , public_percent: 2.66, pib_percent: 1.40, per_capita: 332, var: 4.46 },
 
     { country: "spain", year: 2019, spen_mill_eur : 15384.60 , public_percent: 2.94, pib_percent: 1.23, per_capita: 326, var: -4.37 },
     
-    { country: "alemania" , year: 2020 , spen_mill_eur : 47136.7 ,  public_percent: 2.60 , pib_percent: 1.40 , per_capita: 567, var: 8.91 },
+    { country: "germany" , year: 2020 , spen_mill_eur : 47136.7 ,  public_percent: 2.60 , pib_percent: 1.40 , per_capita: 567, var: 8.91 },
 
-    {country: "alemania" , year: 2019, spen_mill_eur : 43773.50 , public_percent: 2.81 , pib_percent: 1.27 , per_capita: 527, var: 5.61 }];
+    {country: "germany" , year: 2019, spen_mill_eur : 43773.50 , public_percent: 2.81 , pib_percent: 1.27 , per_capita: 527, var: 5.61 },
+
+    {country: "france" , year: 2020, spen_mill_eur : 47745.7 , public_percent: 3.29 , pib_percent: 2.07 , per_capita: 704, var: 7.82 },
+
+    {country: "france" , year: 2019, spen_mill_eur : 44986.30 , public_percent: 3.32 , pib_percent: 1.85 , per_capita: 665, var: -2.37 }
+];
 
 
-//GET
 
-app.get(BASE_API_URL+ "/defense_spent_stats", (req,res)=>{
-    res.send(JSON.stringify(defense_spent_stats,null,2));
+
+
+//Cargar Datos Iniciales
+
+app.get(BASE_API_URL_DEFENSE+"/loadInitialData",(req,res)=>{
+
+    if(defense_spent_stats.length==0){
+        defense_spent_stats = [
+    { country: "spain", year: 2020 , spen_mill_eur : 15730.3 , public_percent: 2.66, pib_percent: 1.40, per_capita: 332, var: 4.46 },
+
+    { country: "spain", year: 2019, spen_mill_eur : 15384.60 , public_percent: 2.94, pib_percent: 1.23, per_capita: 326, var: -4.37 },
+    
+    { country: "germany" , year: 2020 , spen_mill_eur : 47136.7 ,  public_percent: 2.60 , pib_percent: 1.40 , per_capita: 567, var: 8.91 },
+
+    {country: "germany" , year: 2019, spen_mill_eur : 43773.50 , public_percent: 2.81 , pib_percent: 1.27 , per_capita: 527, var: 5.61 },
+
+    {country: "france" , year: 2020, spen_mill_eur : 47745.7 , public_percent: 3.29 , pib_percent: 2.07 , per_capita: 704, var: 7.82 },
+
+    {country: "france" , year: 2019, spen_mill_eur : 44986.30 , public_percent: 3.32 , pib_percent: 1.85 , per_capita: 665, var: -2.37 }
+    ];}
+
+    res.sendStatus(200,"OK");
+
+
 });
 
 
-//POST
 
-app.post(BASE_API_URL+ "/defense_spent_stats", (req,res)=>{
-    defense_spent_stats.push(req.body);
-    res.sendStatus(201, "CREATED");
+
+//Metodo auxiliar
+
+function check_body(req){
+    return (req.body.country == null |
+             req.body.year == null | 
+             req.body.spen_mill_eur == null | 
+             req.body.public_percent == null | 
+             req.body.pib_percent == null |
+             req.body.per_capita == null |
+             req.body.var == null);
+}
+
+
+
+//GETs
+
+//GET Global y años
+
+app.get(BASE_API_URL_DEFENSE,(req,res)=>{
+    var year = req.query.year;
+    var from = req.query.from;
+    var to   = req.query.to;
+
+    if(year!=null){
+        //Busqueda por año
+
+        var filteredList = defense_spent_stats.filter((reg)=>{
+            return (reg.year == year);
+        });
+
+        if(filteredList==0){
+            res.sendStatus(404, "NOT FOUND");
+        }else{
+            res.send(JSON.stringify(filteredList,null,2));
+        }
+    }else if (from !=null && to !=null){
+        //Busqueda para from y  to
+
+        var filteredList = defense_spent_stats.filter((reg)=>
+        {
+            return (reg.year >= from && reg.year <=to);
+        });
+        if (filteredList==0){
+            res.sendStatus(404, "NOT FOUND");
+        }else{
+            res.send(JSON.stringify(filteredList,null,2));
+        }
+
+    }else if(year == null && from == null && to == null){
+        res.send(JSON.stringify(defense_spent_stats,null,2));
+    }else{
+        res.sendStatus(400, "BAD REQUEST");
+    }
+
 });
+
+//GET Pais
+
+app.get(BASE_API_URL_DEFENSE+"/:country",(req, res)=>{
+
+    var country =req.params.country
+    var filteredList = defense_spent_stats.filter((reg)=>
+    {
+        return (reg.country == country);
+    });
+
+    var from = req.query.from;
+    var to = req.query.to;
+
+    if(from != null && to != null){
+        // Apartado para from y to
+        filteredList = filteredList.filter((reg)=>
+        {
+            return (reg.year >= from && reg.year <=to);
+        });
+        if (filteredList==0){
+            res.sendStatus(404, "NOT FOUND");
+        }else{
+            res.send(JSON.stringify(filteredList,null,2));
+        }
+
+    }else{
+        if (filteredList==0){
+            res.sendStatus(404, "NO EXISTE");
+        }else{
+            res.send(JSON.stringify(filteredList,null,2));
+        }
+    }
+
+});
+
+//GET por Pais y Año
+
+app.get(BASE_API_URL_DEFENSE+"/:country/:year",(req, res)=>{
+
+    var country =req.params.country
+    var year = req.params.year
+    var filteredList = defense_spent_stats.filter((reg)=>
+    {
+        return (reg.country == country && reg.year == year);
+    });
+    if (filteredList==0){
+        res.sendStatus(404, "NOT FOUND");
+    }else{
+        res.send(JSON.stringify(filteredList,null,2));
+    }
+});
+
+//POSTs
+
+//POST resources list
+
+app.post(BASE_API_URL_DEFENSE,(req, res)=>{
+    
+    if(check_body(req)){
+        res.sendStatus(400,"BAD REQUEST - Parametros incorrectos");
+    }else{
+        
+        //Comprobamos que no existe ya el dato
+        var filteredList = defense_spent_stats.filter((reg)=>
+        {
+            return(req.body.country == reg.country && req.body.year == reg.year)
+        })
+    
+        if(filteredList.length != 0){
+            res.sendStatus(409,"CONFLICT");
+        }else{
+            defense_spent_stats.push(req.body);
+            res.sendStatus(201,"CREATED");
+        }
+    }
+
+});
+defense_spent_stats.findIndex
+// POST para recurso concreto
+
+app.post(BASE_API_URL_DEFENSE+"/:country",(req, res)=>{
+    res.sendStatus(405,"METHOD NOT ALLOWED");
+});
+
+
+//PUTs
+
+// PUT de una lista de recursos
+
+app.put(BASE_API_URL_DEFENSE,(req, res)=>{
+    
+    res.sendStatus(405,"METHOD NOT ALLOWED");
+});
+
+// PUT de un recurso especifico
+
+app.put(BASE_API_URL_DEFENSE+"/:country/:year",(req, res)=>{
+    
+    if(check_body(req)){
+        res.sendStatus(400,"BAD REQUEST - Parametros incorrectos");
+    }else{
+        var country = req.params.country;
+        var year = req.params.year;
+        var body = req.body;  
+
+        //Usamos un index para poder localizar el elemento en concreto dentro del array
+        var index = defense_spent_stats.findIndex((reg) =>{
+            return (reg.country == country && reg.year == year)
+        });
+        if(index == null){
+            res.sendStatus(404,"NOT FOUND");
+        }else if(country != body.country || year != body.year){
+            res.sendStatus(400,"BAD REQUEST");
+        }else{
+            var  update_defense_spent_stat = {...body};
+            defense_spent_stats[index] = update_defense_spent_stat;
+        
+            res.sendStatus(200,"UPDATED");
+        }
+    }
+
+});
+
+// DELETEs
+
+// DELETE de una lista de recursos
+
+app.delete(BASE_API_URL_DEFENSE,(req, res)=>{
+    defense_spent_stats = [];
+    res.sendStatus(200,"DELETED");
+});
+
+// DELETE de un recurso especifico
+
+app.delete(BASE_API_URL_DEFENSE+"/:country/:year",(req, res)=>{
+    var country = req.params.country;
+    var year = req.params.year;
+    defense_spent_stats = defense_spent_stats.filter((reg)=>{
+ 
+        // Con la primera parte comprobamos si es un país distinto al seleccionado
+        // y con la segunda en caso de ser el mismo país se comprueba si es el mismo año
+        return (reg.country!=country || (reg.country == country && reg.year != year))
+    })
+    res.sendStatus(200,"DELETED");
+});
+
+
 
 //--------------------- Parte opcional Manu Gonzalez ---------------------
 

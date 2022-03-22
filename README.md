@@ -10,4 +10,4 @@
 -  **APIs**:
     - [https://sos2122-26.herokuapp.com/api/v1/my-awesome-resource-1/docs](https://sos2122-26.herokuapp.com/api/v1/my-awesome-resource-1/docs) (developed by [Manuel Jesús González Bueno](https://github.com/manueljgb))
     - [https://sos2122-brb.herokuapp.com](https://sos2122-26.herokuapp.com/api/v1/my-awesome-resource-2/docs) (developed by [Bruno Alvaro Rico Barrilero](https://github.com/brico1994))
-    - [https://sos2122-26.herokuapp.com/api/v1/my-awesome-resource-3/docs](https://sos2122-26.herokuapp.com/api/v1/my-awesome-resource-3/docs) (developed by [Pablo Galán Acedo](https://github.com/pabgalace))
+    - [https://sos2122-26.herokuapp.com/api/v1/defense-spent-stats/docs](https://sos2122-26.herokuapp.com/api/v1/defense-spent-stats/docs) (developed by [Pablo Galán Acedo](https://github.com/pabgalace))

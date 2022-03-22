@@ -69,3 +69,36 @@ app.post(BASE_API_URL+ "/electricity-generation-stats", (req,res)=>{
     electricity_generation_stats.push(req.body);
     res.sendStatus(201, "CREATED");
 });
+
+//--------------------- Parte opcional Bruno Alvaro Rico Barrilero ---------------------
+
+//Array de objetos
+
+var developement_indicators_stats = [ 
+    { country: "spain", year: 2011 , military_spending_in_porcentage_of_gpd : 1.33187655521014,
+     annual_gdp_growth: -0.81437345515107, high_tech_products_exports: 6.59 },
+
+    { country: "spain", year: 2012, military_spending_in_porcentage_of_gpd : 1.423637303 ,
+     annual_gdp_growth: -2.95944130173555, high_tech_products_exports: 7.24990802040879},
+    
+    { country: "germany" , year: 2011 , military_spending_in_porcentage_of_gpd : 1.206150336 ,
+     annual_gdp_growth: 3.92519270463411 , high_tech_products_exports: 16.3375426942735},
+
+    {country: "germany" , year: 2012, military_spending_in_porcentage_of_gpd : 1.24167747904608 ,
+     annual_gdp_growth: 0.418497594217598 , high_tech_products_exports: 17.2215381656985 }];
+
+
+//GET
+
+app.get(BASE_API_URL+ "developement-indicators-stats", (req,res)=>{
+    res.send(JSON.stringify(developement-indicators-stats,null,2));
+});
+
+
+//POST
+
+app.post(BASE_API_URL+ "developement-indicators-stats", (req,res)=>{
+    developement-indicators-stats.push(req.body);
+    res.sendStatus(201, "CREATED");
+});
+

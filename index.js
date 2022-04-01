@@ -393,8 +393,6 @@ app.get(BASE_API_URL_DEVELOPEMENT_INDICATORS +"/loadInitialData",(req,res)=>{
             res.sendStatus(200,"OK");
         }
 
-    res.sendStatus(200,"OK");
-
 
 });
 

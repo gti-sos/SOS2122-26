@@ -375,13 +375,15 @@ app.get(BASE_API_URL_DEVELOPEMENT_INDICATORS +"/loadInitialData",(req,res)=>{
                 year: 2012,
                 military_spending_in_porcentage_of_gpd : 1.423637303,
                 annual_gdp_growth: -2.95944130173555,
-                high_tech_products_exports: 7.24990802040879},    
+                high_tech_products_exports: 7.24990802040879
+            },    
             { 
                 country: "germany",
                 year: 2011 ,
                 military_spending_in_porcentage_of_gpd : 1.206150336,
                 annual_gdp_growth: 3.92519270463411,
-                high_tech_products_exports: 16.3375426942735},
+                high_tech_products_exports: 16.3375426942735
+            },
             {
                 country: "germany",
                 year: 2012,
@@ -395,6 +397,16 @@ app.get(BASE_API_URL_DEVELOPEMENT_INDICATORS +"/loadInitialData",(req,res)=>{
 
 
 });
+
+//Metodo auxiliar
+
+function check_body_DI(req){
+    return (req.body.country == null |
+             req.body.year == null | 
+             req.body.military_spending_in_porcentage_of_gpd == null | 
+             req.body.annual_gdp_growth == null | 
+             req.body.high_tech_products_exports == null);
+}
 
 //GETs
 
@@ -538,7 +550,7 @@ app.put(BASE_API_URL_DEVELOPEMENT_INDICATORS,(req, res)=>{
 
 app.put(BASE_API_URL_DEVELOPEMENT_INDICATORS +"/:country/:year",(req, res)=>{
     
-    if(check_body(req)){
+    if(check_body_DI(req)){
         res.sendStatus(400,"BAD REQUEST - Parametros incorrectos");
     }else{
         var country = req.params.country;

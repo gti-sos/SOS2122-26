@@ -389,6 +389,8 @@ app.get(BASE_API_URL_DEVELOPEMENT_INDICATORS +"/loadInitialData",(req,res)=>{
                 annual_gdp_growth: 0.418497594217598,
                 high_tech_products_exports: 17.2215381656985
             }];
+
+            res.sendStatus(200,"OK");
         }
 
     res.sendStatus(200,"OK");

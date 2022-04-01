@@ -510,7 +510,7 @@ app.get(BASE_API_URL_DEVELOPEMENT_INDICATORS+"/:country/:year",(req, res)=>{
 
 app.post(BASE_API_URL_DEVELOPEMENT_INDICATORS,(req, res)=>{
     
-    if(check_body(req)){
+    if(check_body_DI(req)){
         res.sendStatus(400,"BAD REQUEST - Parametros incorrectos");
     }else{
         

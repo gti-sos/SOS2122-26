@@ -316,7 +316,7 @@ app.post(BASE_API_URL+ "/electricity-generation-stats", (req,res)=>{
 //Array de objetos
 
 
-const BASE_API_URL_DEVELOPEMENT_INDICATORS = "/api/v1/developement-indicators-spent-stats";
+const BASE_API_URL_DEVELOPEMENT_INDICATORS = "/api/v1/developement-indicators-stats";
 
 
 var developement_indicators_stats = [ 

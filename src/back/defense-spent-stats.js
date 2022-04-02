@@ -26,7 +26,7 @@ module.exports.register = (app,db) => {
 
 app.get(BASE_API_URL_DEFENSE+"/docs",(req,res)=>
 {
-    res.redirect("https://documenter.getpostman.com/view/19481608/UVsSLhi1");
+    res.redirect("https://documenter.getpostman.com/view/19481608/UVyswFmx");
 });
 
 

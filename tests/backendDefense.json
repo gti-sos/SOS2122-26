@@ -1,0 +1,699 @@
+{
+	"info": {
+		"_postman_id": "5aa8ca1d-fc8d-4651-8d88-af68bfde80d5",
+		"name": "Portal de documentación",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "defense_spent_stats GET Cargar datos inicales",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}{{API-DEFENSE}}/loadInitialData",
+					"host": [
+						"{{HOST}}{{API-DEFENSE}}"
+					],
+					"path": [
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defense_spent_stats GET Global",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse is an Array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(Array.isArray(jsonData)).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse has at least 1 element\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.be.at.least(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}{{API-DEFENSE}}",
+					"host": [
+						"{{HOST}}{{API-DEFENSE}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defense_spent_stats GET por país",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse is an Array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(Array.isArray(jsonData)).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse has contact\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.be.at.least(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}{{API-DEFENSE}}/spain",
+					"host": [
+						"{{HOST}}{{API-DEFENSE}}"
+					],
+					"path": [
+						"spain"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defense_spent_stats GET por país y año",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse is an object\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(typeof jsonData == 'object').to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}{{API-DEFENSE}}/spain/2020",
+					"host": [
+						"{{HOST}}{{API-DEFENSE}}"
+					],
+					"path": [
+						"spain",
+						"2020"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defense_spent_stats GET por año",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse is an Array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(Array.isArray(jsonData)).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse has contact\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.be.at.least(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check if year==2019\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    for(var i = 0; i<jsonData.length;i++){\r",
+							"        pm.expect(jsonData[i].year).to.eql(2019);\r",
+							"    };\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}{{API-DEFENSE}}?year=2019",
+					"host": [
+						"{{HOST}}{{API-DEFENSE}}"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "2019"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defense_spent_stats GET Global pagination",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse is an Array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(Array.isArray(jsonData)).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse has at least 1 element\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.be.at.least(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}{{API-DEFENSE}}?offset=2&limit=3",
+					"host": [
+						"{{HOST}}{{API-DEFENSE}}"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "2"
+						},
+						{
+							"key": "limit",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defense_spent_stats GET from&to",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse is an Array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(Array.isArray(jsonData)).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse has at least 1 element\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.be.at.least(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"From <= to\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var from = pm.request.url.query.toObject().from;\r",
+							"    var to = pm.request.url.query.toObject().to;\r",
+							"    pm.expect(from<=to).to.be.eql(true);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}{{API-DEFENSE}}?from=2017&to=2020",
+					"host": [
+						"{{HOST}}{{API-DEFENSE}}"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2017"
+						},
+						{
+							"key": "to",
+							"value": "2020"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defense_spent_stats POST en lista de recursos (objeto)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"country\": \"spain\",\r\n \"year\": 2017 ,\r\n    \"spen_mill_eur\" : 15730.3 ,\r\n   \"public_percent\": 2.66,\r\n    \"pib_percent\": 1.40,\r\n     \"per_capita\": 332,\r\n      \"var\": 4.46 \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}{{API-DEFENSE}}",
+					"host": [
+						"{{HOST}}{{API-DEFENSE}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defense_spent_stats POST para recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"country\": \"spain\",\r\n \"year\": 2017 ,\r\n    \"spen_mill_eur\" : 15730.3 ,\r\n   \"public_percent\": 2.66,\r\n    \"pib_percent\": 1.40,\r\n     \"per_capita\": 332,\r\n      \"var\": 4.46 \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}{{API-DEFENSE}}/spain",
+					"host": [
+						"{{HOST}}{{API-DEFENSE}}"
+					],
+					"path": [
+						"spain"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defense_spent_stats PUT para recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"country\": \"spain\",\r\n \"year\": 2017 ,\r\n    \"spen_mill_eur\" : 160000.3 ,\r\n   \"public_percent\": 2.66,\r\n    \"pib_percent\": 1.40,\r\n     \"per_capita\": 332,\r\n      \"var\": 4.46 \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}{{API-DEFENSE}}/spain/2017",
+					"host": [
+						"{{HOST}}{{API-DEFENSE}}"
+					],
+					"path": [
+						"spain",
+						"2017"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defense_spent_stats PUT para lista de recursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"country\": \"spain\",\r\n \"year\": 2017 ,\r\n    \"spen_mill_eur\" : 160000.3 ,\r\n   \"public_percent\": 2.66,\r\n    \"pib_percent\": 1.40,\r\n     \"per_capita\": 332,\r\n      \"var\": 4.46 \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}{{API-DEFENSE}}",
+					"host": [
+						"{{HOST}}{{API-DEFENSE}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defense_spent_stats PUT FALLO para recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"country\": \"belgium\",\r\n \"year\": 2017 ,\r\n    \"spen_mill_eur\" : 160000.3 ,\r\n   \"public_percent\": 2.66,\r\n    \"pib_percent\": 1.40,\r\n     \"per_capita\": 332,\r\n      \"var\": 4.46 \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}{{API-DEFENSE}}/spain/2017",
+					"host": [
+						"{{HOST}}{{API-DEFENSE}}"
+					],
+					"path": [
+						"spain",
+						"2017"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defense_spent_stats POST FALLO lista de recursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"country\": \"spain\",\r\n \"year\": 2019 ,\r\n    \"spen_mill_eur\" : 15384.60 ,\r\n   \"public_percent\": 2.94,\r\n    \"pib_percent\": 1.23,\r\n     \"per_capita\": 326,\r\n      \"var\": 4.46 \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}{{API-DEFENSE}}",
+					"host": [
+						"{{HOST}}{{API-DEFENSE}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defense_spent_stats POST FALLO JSON de una lista de resursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"city\": \"Rabat\",\r\n \"year\": 2019 ,\r\n    \"spen_mill_eur\" : 15384.60 ,\r\n   \"public_percent\": 2.94,\r\n    \"pib_percent\": 1.23,\r\n     \"per_capita\": 326,\r\n      \"var\": 4.46 \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}{{API-DEFENSE}}",
+					"host": [
+						"{{HOST}}{{API-DEFENSE}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defense_spent_stats GET FALLO recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"city\": \"Rabat\",\r\n \"year\": 2019 ,\r\n    \"spen_mill_eur\" : 15384.60 ,\r\n   \"public_percent\": 2.94,\r\n    \"pib_percent\": 1.23,\r\n     \"per_capita\": 326,\r\n      \"var\": 4.46 \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}{{API-DEFENSE}}/greece",
+					"host": [
+						"{{HOST}}{{API-DEFENSE}}"
+					],
+					"path": [
+						"greece"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defense_spent_stats DELETE recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"city\": \"Rabat\",\r\n \"year\": 2019 ,\r\n    \"spen_mill_eur\" : 15384.60 ,\r\n   \"public_percent\": 2.94,\r\n    \"pib_percent\": 1.23,\r\n     \"per_capita\": 326,\r\n      \"var\": 4.46 \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}{{API-DEFENSE}}/spain/2017",
+					"host": [
+						"{{HOST}}{{API-DEFENSE}}"
+					],
+					"path": [
+						"spain",
+						"2017"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defense_spent_stats DELETE lista de recursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"city\": \"Rabat\",\r\n \"year\": 2019 ,\r\n    \"spen_mill_eur\" : 15384.60 ,\r\n   \"public_percent\": 2.94,\r\n    \"pib_percent\": 1.23,\r\n     \"per_capita\": 326,\r\n      \"var\": 4.46 \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}{{API-DEFENSE}}",
+					"host": [
+						"{{HOST}}{{API-DEFENSE}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

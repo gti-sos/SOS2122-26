@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": " npx newman run ./tests/backendDefense.json -e ./tests/env/localDefense.json"
+    "test": "npm run test-defense-spent-stats && npm run test-electricity-generation-stats",
+    "test-defense-spent-stats": " npx newman run ./tests/backendDefense.json -e ./tests/env/localDefense.json",
+    "test-electricity-generation-stats": " npx newman run ./tests/backendElectricity.json -e ./tests/env/HerokuElectricity.json"
   },
   "repository": {
     "type": "git",

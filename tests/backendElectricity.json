@@ -201,14 +201,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{HOST}}{{API-ELECTRICITY}}?year=2020",
+					"raw": "{{HOST}}{{API-ELECTRICITY}}?year=2019",
 					"host": [
 						"{{HOST}}{{API-ELECTRICITY}}"
 					],
 					"query": [
 						{
 							"key": "year",
-							"value": "2020"
+							"value": "2019"
 						}
 					]
 				}

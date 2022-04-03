@@ -1,0 +1,689 @@
+{
+	"info": {
+		"_postman_id": "2c509eb5-d45e-4748-a7e5-34f95f4ab6a9",
+		"name": "SOS2122-26 Portal de documentación electricity-generation-stats",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "LOAD INITIAL DATA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}{{API-ELECTRICITY}}/loadInitialData",
+					"host": [
+						"{{HOST}}{{API-ELECTRICITY}}"
+					],
+					"path": [
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ALL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse is an Array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(Array.isArray(jsonData)).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse has at least 1 element\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.be.at.least(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}{{API-ELECTRICITY}}",
+					"host": [
+						"{{HOST}}{{API-ELECTRICITY}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET GLOBAL PAGINATION",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse is an Array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(Array.isArray(jsonData)).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse has at least 1 element\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.be.at.least(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}{{API-ELECTRICITY}}?offset=2&limit=2",
+					"host": [
+						"{{HOST}}{{API-ELECTRICITY}}"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "2"
+						},
+						{
+							"key": "limit",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET COUNTRY",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse is an Array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(Array.isArray(jsonData)).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse has contact\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.be.at.least(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}{{API-ELECTRICITY}}/:country",
+					"host": [
+						"{{HOST}}{{API-ELECTRICITY}}"
+					],
+					"path": [
+						":country"
+					],
+					"variable": [
+						{
+							"key": "country",
+							"value": "spain"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET YEAR",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse is an Array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(Array.isArray(jsonData)).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse has contact\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.be.at.least(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check if year==2019\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    for(var i = 0; i<jsonData.length;i++){\r",
+							"        pm.expect(jsonData[i].year).to.eql(2019);\r",
+							"    };\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}{{API-ELECTRICITY}}?year=2020",
+					"host": [
+						"{{HOST}}{{API-ELECTRICITY}}"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "2020"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET FROM TO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse is an Array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(Array.isArray(jsonData)).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse has at least 1 element\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.be.at.least(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"From <= to\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var from = pm.request.url.query.toObject().from;\r",
+							"    var to = pm.request.url.query.toObject().to;\r",
+							"    pm.expect(from<=to).to.be.eql(true);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}{{API-ELECTRICITY}}?from=2015&to=2019",
+					"host": [
+						"{{HOST}}{{API-ELECTRICITY}}"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2015"
+						},
+						{
+							"key": "to",
+							"value": "2019"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET COUNTRY, YEAR",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Responsse is an object\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(typeof jsonData == 'object').to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}{{API-ELECTRICITY}}/:country/:year",
+					"host": [
+						"{{HOST}}{{API-ELECTRICITY}}"
+					],
+					"path": [
+						":country",
+						":year"
+					],
+					"variable": [
+						{
+							"key": "country",
+							"value": "spain"
+						},
+						{
+							"key": "year",
+							"value": "2019"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET FALLO RECURSO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}{{API-ELECTRICITY}}/:country",
+					"host": [
+						"{{HOST}}{{API-ELECTRICITY}}"
+					],
+					"path": [
+						":country"
+					],
+					"variable": [
+						{
+							"key": "country",
+							"value": "greece"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST NEW ITEM",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"country\": \"italy\",\r\n    \"year\": 2019,\r\n    \"installed_capacity_mw\": 115462,\r\n    \"generation_gwh\": 283008,\r\n    \"renovable_inst_cap_mw\": 52117,\r\n    \"renovable_gen_gwh\": 117946,\r\n    \"renovable_percentage\": 41.68,\r\n    \"var\": -0.511\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}{{API-ELECTRICITY}}",
+					"host": [
+						"{{HOST}}{{API-ELECTRICITY}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST NEW ITEM BAD",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"country\": \"spain\",\r\n    \"year\": 2018,\r\n    \"installed_capacity_mw\": 104123,\r\n    \"generation_gwh\": 260982,\r\n    \"renovable_inst_cap_mw\": 48656,\r\n    \"renovable_gen_gwh\": 100344,\r\n    \"renovable_percentage\": 38.45,\r\n    \"var\": 6.19\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}{{API-ELECTRICITY}}/:country",
+					"host": [
+						"{{HOST}}{{API-ELECTRICITY}}"
+					],
+					"path": [
+						":country"
+					],
+					"variable": [
+						{
+							"key": "country",
+							"value": "spain"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST RECURSO conflict",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"country\": \"spain\",\r\n    \"year\": 2019,\r\n    \"installed_capacity_mw\": 100000,\r\n    \"generation_gwh\": 999999,\r\n    \"renovable_inst_cap_mw\": 888888,\r\n    \"renovable_gen_gwh\": 77,\r\n    \"renovable_percentage\": 88.36,\r\n    \"var\": 50.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}{{API-ELECTRICITY}}",
+					"host": [
+						"{{HOST}}{{API-ELECTRICITY}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST RECURSO fallo JSON",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"city\": \"spain\",\r\n    \"year\": 2019,\r\n    \"installed_capacity_mw\": 100000,\r\n    \"generation_gwh\": 999999,\r\n    \"renovable_inst_cap_mw\": 888888,\r\n    \"renovable_gen_gwh\": 77,\r\n    \"renovable_percentage\": 88.36,\r\n    \"var\": 50.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}{{API-ELECTRICITY}}",
+					"host": [
+						"{{HOST}}{{API-ELECTRICITY}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT RECURSO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"country\": \"spain\",\r\n    \"year\": 2019,\r\n    \"installed_capacity_mw\": 100000,\r\n    \"generation_gwh\": 999999,\r\n    \"renovable_inst_cap_mw\": 888888,\r\n    \"renovable_gen_gwh\": 77,\r\n    \"renovable_percentage\": 88.36,\r\n    \"var\": 50.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}{{API-ELECTRICITY}}/:country/:year",
+					"host": [
+						"{{HOST}}{{API-ELECTRICITY}}"
+					],
+					"path": [
+						":country",
+						":year"
+					],
+					"variable": [
+						{
+							"key": "country",
+							"value": "spain"
+						},
+						{
+							"key": "year",
+							"value": "2019"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT RECURSO BAD",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"country\": \"spain\",\r\n    \"year\": 2019,\r\n    \"installed_capacity_mw\": 100000,\r\n    \"generation_gwh\": 999999,\r\n    \"renovable_inst_cap_mw\": 888888,\r\n    \"renovable_gen_gwh\": 77,\r\n    \"renovable_percentage\": 88.36,\r\n    \"var\": 50.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}{{API-ELECTRICITY}}",
+					"host": [
+						"{{HOST}}{{API-ELECTRICITY}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DEL RECURSO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}{{API-ELECTRICITY}}/:country/:year",
+					"host": [
+						"{{HOST}}{{API-ELECTRICITY}}"
+					],
+					"path": [
+						":country",
+						":year"
+					],
+					"variable": [
+						{
+							"key": "country",
+							"value": "spain"
+						},
+						{
+							"key": "year",
+							"value": "2019"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DEL LISTA RECURSOS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}{{API-ELECTRICITY}}",
+					"host": [
+						"{{HOST}}{{API-ELECTRICITY}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

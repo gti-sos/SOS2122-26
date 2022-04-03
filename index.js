@@ -5,12 +5,14 @@ const Datastore = require("nedb");
 
 const BASE_API_URL = "/api/v1";
 const defense_spent_stats_API = require("./src/back/defense-spent-stats.js");
+const electricity_generation_stats_API = require("./src/back/electricity-generation-stats.js");
 
 
 
 //BASE DE DATOS
 
 db_defense_spent_stats = new Datastore();
+db_electricity_generation_stats = new Datastore();
 
 
 //EXPRESS
@@ -40,30 +42,9 @@ console.log(`Servidor listo ${port}`);
 
 defense_spent_stats_API.register(app,db_defense_spent_stats);
 
+//--------------------- API REST de Manuel González ---------------------
 
-
-//--------------------- Parte opcional Manu Gonzalez ---------------------
-
-//Array de objetos
-
-var electricity_generation_stats = [ 
-    {country:"spain",year:2021,installed_capacity_mw:110287,generation_gwh:519699,renovable_inst_cap_mw:55492,renovable_gen_gwh:121305,renovable_percentage:23.32,var:1.32},
-{country:"alemania",year:2020,installed_capacity_mw:230418,generation_gwh:545205,renovable_inst_cap_mw:131399,renovable_gen_gwh:264851,renovable_percentage:48.58,var:5.15}
-]
-    
-//GET
-
-app.get(BASE_API_URL+ "/electricity-generation-stats", (req,res)=>{
-    res.send(JSON.stringify(electricity_generation_stats,null,2));
-});
-
-
-//POST
-
-app.post(BASE_API_URL+ "/electricity-generation-stats", (req,res)=>{
-    electricity_generation_stats.push(req.body);
-    res.sendStatus(201, "CREATED");
-});
+electricity_generation_stats_API.register(app,db_electricity_generation_stats);
 
 //--------------------- Parte opcional Bruno Alvaro Rico Barrilero ---------------------
 

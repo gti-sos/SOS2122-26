@@ -1,10 +1,10 @@
-const cool = require("cool-ascii-faces");
 const express = require("express");
 const bodyParser = require("body-parser");
 const Datastore = require("nedb");
 
+
 const BASE_API_URL = "/api/v1";
-const defense_spent_stats_API = require("./src/back/defense-spent-stats.js");
+
 const electricity_generation_stats_API = require("./src/back/electricity-generation-stats.js");
 
 
@@ -26,12 +26,6 @@ app.use("/",express.static('public'));
 app.use(bodyParser.json());
 
 
-
-app.get("/cool",(req,res)=>{
-    console.log("requested / route")
-    res.send("<html><body><h1>"+cool()+"</h1></body></html>")
-});
-
 app.listen(port,()=>{
     console.log(`Server TRULY ready at port ${port}`);
 }); 
@@ -39,8 +33,14 @@ app.listen(port,()=>{
 console.log(`Servidor listo ${port}`);
 
 //--------------------- API REST de Pablo Galán ---------------------
+const defenseStatsAPIv1 = require("./src/back/defenseStatsAPI/v1/defense-spent-stats.js");
+defenseStatsAPIv1.register(app,db_defense_spent_stats);
 
-defense_spent_stats_API.register(app,db_defense_spent_stats);
+const defenseStatsAPIv2 = require("./src/back/defenseStatsAPI/v2/defense-spent-stats.js");
+defenseStatsAPIv2.register(app);
+
+
+
 
 //--------------------- API REST de Manuel González ---------------------
 

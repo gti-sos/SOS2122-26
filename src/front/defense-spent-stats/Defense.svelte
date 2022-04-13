@@ -167,7 +167,7 @@
 
 <main>
 
-    <h1 style ="text-align: center;">Tabla de datos de Esperanza de vida</h1>
+    <h1 style ="text-align: center;">Tabla de datos de Gasto en defensa por países</h1>
 
         {#await entries}
             Loading entry stats data...
@@ -187,9 +187,9 @@
                     <th>Pais</th>
                     <th>Año</th>
                     <th>Gasto en millones</th>
-                    <th>Gasto publico</th>
-                    <th>Porcentaje PiB</th>
-                    <th>Per Capita</th>
+                    <th>% Gasto publico</th>
+                    <th>% PiB</th>
+                    <th>Gasto Per Capita</th>
                     <th>Var</th>
                     <th colspan="2">Acciones</th>
                 </tr>

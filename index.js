@@ -42,9 +42,9 @@ defenseStatsAPIv2.register(app);
 
 
 //--------------------- API REST de Manuel González ---------------------
-const electricity_generation_stats_APIv1 = require("./src/back/defenseStatsAPI/v1/electricity-generation-stats.js");
+const electricity_generation_stats_APIv1 = require("./src/back/electricityStatsAPI/v1/electricity-generation-stats.js");
 electricity_generation_stats_APIv1.register(app,db_electricity_generation_stats);
-const electricity_generation_stats_APIv2 = require("./src/back/defenseStatsAPI/v2/electricity-generation-stats.js");
+const electricity_generation_stats_APIv2 = require("./src/back/electricityStatsAPI/v2/electricity-generation-stats.js");
 electricity_generation_stats_APIv2.register(app);
 
 

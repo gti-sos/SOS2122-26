@@ -5,7 +5,6 @@ const Datastore = require("nedb");
 
 const BASE_API_URL = "/api/v1";
 
-const electricity_generation_stats_API = require("./src/back/electricity-generation-stats.js");
 
 
 
@@ -43,8 +42,12 @@ defenseStatsAPIv2.register(app);
 
 
 //--------------------- API REST de Manuel González ---------------------
+const electricity_generation_stats_APIv1 = require("./src/back/defenseStatsAPI/v1/electricity-generation-stats.js");
+electricity_generation_stats_APIv1.register(app,db_electricity_generation_stats);
+const electricity_generation_stats_APIv2 = require("./src/back/defenseStatsAPI/v2/electricity-generation-stats.js");
+electricity_generation_stats_APIv2.register(app);
 
-electricity_generation_stats_API.register(app,db_electricity_generation_stats);
+
 
 //--------------------- Parte opcional Bruno Alvaro Rico Barrilero ---------------------
 

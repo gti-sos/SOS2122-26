@@ -215,7 +215,7 @@ module.exports.register = (app) => {
         var reqyear = parseInt(req.params.year);
         var data = req.body;
 
-        if (Object.keys(data).length != 9) {
+        if (Object.keys(data).length != 8) {
             console.log("Actualizacion de campos no valida");
             res.sendStatus(400);
         }else {

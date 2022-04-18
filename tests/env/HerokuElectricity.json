@@ -10,7 +10,7 @@
 		},
 		{
 			"key": "API-ELECTRICITY",
-			"value": "/api/v1/electricity-generation-stats",
+			"value": "/api/v2/electricity-generation-stats",
 			"type": "default",
 			"enabled": true
 		}

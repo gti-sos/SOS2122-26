@@ -5,7 +5,7 @@
 	import Button from "sveltestrap/src/Button.svelte";
     import { Alert } from 'sveltestrap';
 
-    var BASE_API_PATH = "/api/v2/defense-spent-stats";
+    var BASE_API_PATH = "/api/v2/electricity-generation-stats";
     let visible = false;
     let color = "danger";
 

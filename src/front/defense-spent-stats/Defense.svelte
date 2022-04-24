@@ -3,6 +3,9 @@
     import Table from 'sveltestrap/src/Table.svelte';
     import Button from 'sveltestrap/src/Button.svelte';
 	import { Alert } from 'sveltestrap';
+
+    let redStyle = "redTable";
+    let blueStyle = "blueTable";
     
     var BASE_API_PATH = "/api/v2/defense-spent-stats";
 
@@ -20,8 +23,16 @@
     let visible = false;
     let color = "danger";
     let page = 1;
-    let totaldata=6;
-    
+    let totaldata=20; //Numero total de datos en la DB
+
+    let sCountry = "";
+    let sYear = "";
+    let sSpen_mill_eur = "";
+    let sPublic_percent = "";
+    let sPib_percent = "";
+    let sPer_capita = "";
+    let sVar = "";
+
     onMount(getEntries);
 
     //GET
@@ -52,7 +63,7 @@
             const json = await res.json();
             entries = json;
             visible = true;
-            totaldata=6;
+            totaldata=20;
             console.log("Received " + entries.length + " entry data.");
             color = "success";
             checkMSG = "Datos cargados correctamente";
@@ -163,6 +174,116 @@
 		}
 	}
 
+    //SEARCH DATA
+
+    async function search (sCountry, sYear, sSpen_mill_eur, sPublic_percent, sPib_percent, sPer_capita, sVar){
+            
+            if(sCountry==null){
+                sCountry="";
+            }
+            if(sYear==null){
+                sYear="";
+            }
+            if(sSpen_mill_eur==null){
+                sSpen_mill_eur="";
+            }
+            if(sPublic_percent==null){
+                sPublic_percent="";
+            }
+            if(sPib_percent==null){
+                sPib_percent="";
+            }
+            if(sPer_capita==null){
+                sPer_capita="";
+            }
+            if(sVar==null){
+                sVar = "";
+            }
+            visible = true;
+            const res = await fetch(BASE_API_PATH + "?country="+sCountry
+            +"&year="+sYear
+            +"&spen_mill_eur="+sSpen_mill_eur
+            +"&public_percent="+sPublic_percent
+            +"&pib_percent="+sPib_percent
+            +"&per_capita="+sPer_capita
+            +"&var="+sVar)
+
+            if (res.ok){
+                const json = await res.json();
+                entries = json;
+                console.log("Found "+ entries.length + " data");
+                if(entries.length==1){
+                    color = "success"
+                    checkMSG = "Se ha encontrado un dato para tu búsqueda";
+                }else{
+                    color = "success"
+                    checkMSG = "Se han encontrado " + entries.length + " datos para tu búsqueda";
+                }
+            }
+    }
+
+    /*-------------------------PAGINACIÓN-------------------------*/
+
+        //getNextPage (B)
+        async function getNextPage() {
+    
+                console.log(totaldata);
+                if (page+10 > totaldata) {
+                    page = 1
+                } else {
+                    page+=10
+                }
+                
+                visible = true;
+                console.log("Charging page... Listing since: "+page);
+                const res = await fetch(BASE_API_PATH + "?limit=10&offset="+(-1+page));
+                //condicional imprime msg
+                color = "success";
+                checkMSG= (page+5 > totaldata) ? "Mostrando elementos "+(page)+"-"+totaldata : "Mostrando elementos "+(page)+"-"+(page+9);
+                if (totaldata == 0){
+                    console.log("ERROR Data was not erased");
+                    color = "danger";
+                    checkMSG= "¡No hay datos!";
+                }else if (res.ok) {
+                    console.log("Ok:");
+                    const json = await res.json();
+                    entries = json;
+                    console.log("Received " + entries.length + " resources.");
+                } else {
+                    checkMSG= res.status + ": " + res.statusText;
+                    console.log("ERROR!");
+                }
+            }
+    //getPreviewPage (B)
+        async function getPreviewPage() {
+            
+            console.log(totaldata);
+            if (page-10 > 1) {
+                page-=10; 
+            } else page = 1
+            visible = true;
+            console.log("Charging page... Listing since: "+page);
+            const res = await fetch(BASE_API_PATH + "?limit=10&offset="+(-1+page));
+            color = "success";
+            checkMSG = (page+5 > totaldata) ? "Mostrando elementos "+(page)+"-"+totaldata : "Mostrando elementos "+(page)+"-"+(page+9);
+            if (totaldata == 0){
+                console.log("ERROR Data was not erased");
+                color = "danger";
+                checkMSG = "¡No hay datos!";
+            }else if (res.ok) {
+                console.log("Ok:");
+                const json = await res.json();
+                entries = json;
+                console.log("Received "+entries.length+" resources.");
+            } else {
+                checkMSG = res.status+": "+res.statusText;
+                console.log("ERROR!");
+            }
+        }
+
+
+
+
 </script>
 
 <main>
@@ -178,6 +299,38 @@
                 {checkMSG}
             {/if}
         </Alert>
+
+        <br>
+        <h4 style="text-align:center"><strong>Búsqueda general de parámetros</strong></h4>
+        <br>
+        <Table bordered responsive>
+            <thead>
+                <tr>
+            <th>Búsqueda por país</th>
+            <th>Búsqueda por año</th>
+            <th>Búsqueda por gasto en millones</th>
+            <th>Búsqueda por % gasto publico</th>
+            <th>Búsqueda por % PiB</th>
+            <th>Búsqueda por gasto Per Capita</th>
+            <th>Búsqueda por Var.</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type = "text" placeholder="País" bind:value="{sCountry}"></td>
+                <td><input type = "number" placeholder="2020" bind:value="{sYear}"></td>
+                <td><input type = "number" placeholder="0.0" bind:value="{sSpen_mill_eur}"></td>
+                <td><input type = "number" placeholder="0.0" bind:value="{sPublic_percent}"></td>
+                <td><input type = "number" placeholder="0.0" bind:value="{sPib_percent}"></td>
+                <td><input type = "number" placeholder="0.0" bind:value="{sPer_capita}"></td>
+                <td><input type = "number" placeholder="0.0" bind:value="{sVar}"></td>
+
+            </tr>
+            </tbody>
+        </Table>
+        <div style="text-align:center">
+            <Button outline color="primary" on:click="{search (sCountry, sYear, sSpen_mill_eur, sPublic_percent, sPib_percent,sPer_capita,sVar)}">Buscar</Button>
+        </div>
 
         <br>
 
@@ -196,7 +349,7 @@
         </thead>
         <tbody>
             <tr>
-                <td><input type = "text" placeholder="spain" bind:value="{newEntry.country}"></td> 
+                <td><input type = "text" placeholder="spain" bind:value="{newEntry.country}" ></td> 
                 <td><input type = "text" placeholder="2017" bind:value="{newEntry.year}"></td> 
                 <td><input type = "number" placeholder="15730.3" bind:value="{newEntry.spen_mill_eur}"></td>    
                 <td><input type = "number" placeholder="2.66" bind:value="{newEntry.public_percent}"></td>  
@@ -232,6 +385,37 @@
             Eliminar todo
         </Button>
 
+        <Button outline color="primary" on:click="{getPreviewPage}">
+            Atrás
+         </Button>
+         <Button outline color="primary" on:click="{getNextPage}">
+             Siguiente
+          </Button>
+
 
         {/await} 
 </main>
+
+<style>
+
+input{
+    width: 100%;
+}
+
+thead{
+    background-color: #246355;
+    border-bottom: solid 5px #0F362D;
+    color: white;
+}
+
+tr:nth-child(even){
+	background-color: #ddd;
+}
+
+tr:hover td{
+	background-color: #369681;
+	color: white;
+}
+
+
+</style>

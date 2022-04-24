@@ -23,6 +23,7 @@ module.exports.register = (app) => {
      app.get(BASE_API_PATH+"/loadInitialData",(req,res)=>{
 
         defense_spent_statsIni = [ 
+            
             { country: "spain", year: 2020 , spen_mill_eur : 15730.3 , public_percent: 2.66, pib_percent: 1.40, per_capita: 332, var: 4.46 },
         
             { country: "spain", year: 2019, spen_mill_eur : 15384.60 , public_percent: 2.94, pib_percent: 1.23, per_capita: 326, var: -4.37 },
@@ -33,7 +34,35 @@ module.exports.register = (app) => {
         
             {country: "france" , year: 2020, spen_mill_eur : 47745.7 , public_percent: 3.29 , pib_percent: 2.07 , per_capita: 704, var: 7.82 },
         
-            {country: "france" , year: 2019, spen_mill_eur : 44986.30 , public_percent: 3.32 , pib_percent: 1.85 , per_capita: 665, var: -2.37 }
+            {country: "france" , year: 2019, spen_mill_eur : 44986.30 , public_percent: 3.32 , pib_percent: 1.85 , per_capita: 665, var: -2.37 },
+
+            {country: "italy" , year: 2020, spen_mill_eur : 22844.0 , public_percent: 2.42 , pib_percent: 1.38 , per_capita: 384 , var: 12.98 },
+
+            {country: "italy" , year: 2019, spen_mill_eur : 21142.7 , public_percent: 2.43 , pib_percent: 1.18 , per_capita: 354 , var: -7.04 },
+
+            {country: "portugal" , year: 2020, spen_mill_eur : 3362.3 , public_percent: 3.41 , pib_percent: 1.66 , per_capita: 327 , var: 10.68 },
+
+            {country: "portugal" , year: 2019, spen_mill_eur : 3042.4 , public_percent: 3.34 , pib_percent: 1.42 , per_capita: 296 , var: 1.18 },
+
+            {country: "greece" , year: 2019, spen_mill_eur : 4320.2 , public_percent: 4.92 , pib_percent: 2.36 , per_capita: 403 , var: -4.91 },
+
+            {country: "greece" , year: 2020, spen_mill_eur : 4837.0 , public_percent: 4.89 , pib_percent: 2.92 , per_capita: 451 , var: -3.25 },
+
+            {country: "japan" , year: 2019, spen_mill_eur : 42903.3 , public_percent: 2.49 , pib_percent: 0.94 , per_capita: 340 , var: 2.42 },
+
+            {country: "japan" , year: 2020, spen_mill_eur : 44025.2 , public_percent: 2.07 , pib_percent: 1.00 , per_capita: 350 , var: 5.82 },
+
+            {country: "china" , year: 2019, spen_mill_eur : 221323.1 , public_percent: 4.91 , pib_percent: 1.73 , per_capita: 157 , var: 2.56 },
+
+            {country: "china" , year: 2020, spen_mill_eur : 225756.9 , public_percent: 4.69 , pib_percent: 1.75 , per_capita: 160 , var: 4.81 },
+            
+            {country: "united states" , year: 2019, spen_mill_eur : 654270.7 , public_percent: 9.59 , pib_percent: 3.43 , per_capita: 1991 , var: 7.10 },
+
+            {country: "united states" , year: 2020, spen_mill_eur : 684351.9 , public_percent: 7.93 , pib_percent: 3.74 , per_capita: 2066 , var: 5.85 },
+
+            {country: "australia" , year: 2019, spen_mill_eur : 23114.5 , public_percent: 4.89 , pib_percent: 1.88 , per_capita: 904  , var: -4.18 },
+
+            {country: "australia" , year: 2020, spen_mill_eur : 25767.9 , public_percent: 4.64 , pib_percent: 2.06 , per_capita: 1003 , var: 6.91 }
         ];
 
         // Inicialización base de datos
@@ -86,7 +115,7 @@ module.exports.register = (app) => {
     });
 
 
-     //GET A UN RECURSO CONCRETO DE SMOKER POR COUNTRY/YEAR    
+     //GET A UN RECURSO CONCRETO DE DEFENSE POR COUNTRY/YEAR    
      app.get(BASE_API_PATH+"/:country/:year", (req, res) => {
         var reqCountry = req.params.country;
         var reqYear = parseInt(req.params.year);
@@ -159,11 +188,15 @@ module.exports.register = (app) => {
         var reqcountry = req.params.country;
         var reqyear = parseInt(req.params.year);
         var data = req.body;
-
+        
         if (Object.keys(data).length != 7) {
             console.log("Actualizacion de campos no valida");
-            res.sendStatus(400);
-        }else {
+            res.sendStatus(400,"BAD REQUEST - Parametros incorrectos");
+        }
+        else if(check_body(req)){
+            res.sendStatus(400,"BAD REQUEST - Parametros incorrectos")
+        }
+        else {
             db.update({ country: reqcountry, year: reqyear }, { $set: data }, {}, function (err, dataUpdate) {
                 if (err) {
                     console.error("ERROR accesing DB in GET");
@@ -223,5 +256,18 @@ module.exports.register = (app) => {
             }
         });
     });
+
+
+    /*-------------------F-AUX-------------------*/
+
+    function check_body(req){
+        return (req.body.country == null |
+                 req.body.year == null | 
+                 req.body.spen_mill_eur == null | 
+                 req.body.public_percent == null | 
+                 req.body.pib_percent == null |
+                 req.body.per_capita == null |
+                 req.body.var == null);
+    };
 
 };

@@ -64,7 +64,11 @@
                         console.log("Data introduced");
                         color = "success";
                         errorMsg="Recurso actualizado correctamente";
-                    }else{
+                    }else if(res.status == 400){
+                        console.log("Data incorrect");
+                        errorMsg="Campos incorrectos";
+                    }
+                    else{
                         console.log("Data not edited");
                         errorMsg= "Rellene todos los campos";
                     }

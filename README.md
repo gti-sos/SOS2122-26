@@ -10,4 +10,7 @@
 -  **APIs**:
     - [https://sos2122-26.herokuapp.com/api/v2/electricity-generation-stats/docs](https://sos2122-26.herokuapp.com/api/v2/electricity-generation-stats/docs) (developed by [Manuel Jesús González Bueno](https://github.com/manueljgb))
     - [https://sos2122-brb.herokuapp.com/api/v1/developement-indicators-stats/docs](https://sos2122-26.herokuapp.com/api/v1/developement-indicators-stats/docs) (developed by [Bruno Alvaro Rico Barrilero](https://github.com/brico1994))
-    - [https://sos2122-26.herokuapp.com/api/v1/defense-spent-stats/docs](https://sos2122-26.herokuapp.com/api/v1/defense-spent-stats/docs) (developed by [Pablo Galán Acedo](https://github.com/pabgalace))
+    - [https://sos2122-26.herokuapp.com/api/v1/defense-spent-stats/docs](https://sos2122-26.herokuapp.com/api/v1/defense-spent-stats/docs)
+    - [https://sos2122-26.herokuapp.com/api/v2/defense-spent-stats/docs](https://sos2122-26.herokuapp.com/api/v2/defense-spent-stats/docs)
+    - [https://sos2122-26.herokuapp.com/#/defense-spent-stats](https://sos2122-26.herokuapp.com/#/defense-spent-stats) 
+    (developed by [Pablo Galán Acedo](https://github.com/pabgalace))

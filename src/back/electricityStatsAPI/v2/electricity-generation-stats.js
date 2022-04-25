@@ -288,7 +288,9 @@ module.exports.register = (app) => {
       });
   });
 
-  //GET A UN RECURSO CONCRETO DE SMOKER POR COUNTRY/YEAR
+
+  
+  //GET A UN RECURSO CONCRETO DE ELEC. POR COUNTRY/YEAR
   app.get(BASE_API_PATH + "/:country/:year", (req, res) => {
     var reqCountry = req.params.country;
     var reqYear = parseInt(req.params.year);

@@ -3,6 +3,9 @@
     import Table from 'sveltestrap/src/Table.svelte';
     import Button from 'sveltestrap/src/Button.svelte';
 	import { Alert } from 'sveltestrap';
+
+    let redStyle = "redTable";
+    let blueStyle = "blueTable";
     
     var BASE_API_PATH = "/api/v2/electricity-generation-stats";
 
@@ -22,7 +25,16 @@
     let visible = false;
     let color = "danger";
     let page = 1;
-    let totaldata=6;
+    let totaldata=20;
+
+    let sCountry="";
+	let sYear="";
+	let sInstalled_capacity_mw="";
+    let sGeneration_gwh="";
+    let sRenovable_inst_cap_mw="";
+    let sRenovable_gen_gwh="";
+    let sRenovable_percentage="";
+    let sVar="";
     
     onMount(getEntries);
 
@@ -54,7 +66,7 @@
             const json = await res.json();
             entries = json;
             visible = true;
-            totaldata=6;
+            totaldata=20;
             console.log("Received " + entries.length + " entry data.");
             color = "success";
             checkMSG = "Datos cargados correctamente";
@@ -166,6 +178,120 @@
 		}
 	}
 
+//SEARCH DATA
+
+async function search (sCountry, sYear, sInstalled_capacity_mw, sGeneration_gwh, sRenovable_inst_cap_mw, sRenovable_gen_gwh, sRenovable_percentage, sVar){
+            
+            if(sCountry==null){
+                sCountry="";
+            }
+            if(sYear==null){
+                sYear="";
+            }
+            if(sInstalled_capacity_mw==null){
+                sInstalled_capacity_mw="";
+            }
+            if(sGeneration_gwh==null){
+                sGeneration_gwh="";
+            }
+            if(sRenovable_inst_cap_mw==null){
+                sRenovable_inst_cap_mw="";
+            }
+            if(sRenovable_gen_gwh==null){
+                sRenovable_gen_gwh="";
+            }
+            if(sRenovable_percentage==null){
+                sRenovable_percentage="";
+            }
+            if(sVar==null){
+                sVar = "";
+            }
+            visible = true;
+           
+            const res = await fetch(BASE_API_PATH + "?country="+sCountry
+            +"&year="+sYear
+            +"&installed_capacity_mw="+sInstalled_capacity_mw
+            +"&generation_gwh="+sGeneration_gwh
+            +"&renovable_inst_cap_mw="+sRenovable_inst_cap_mw
+            +"&renovable_gen_gwh="+sRenovable_gen_gwh
+            +"&renovable_percentage="+sRenovable_percentage
+            +"&var="+sVar)
+
+            if (res.ok){
+                const json = await res.json();
+                entries = json;
+                console.log("Found "+ entries.length + " data");
+                if(entries.length==1){
+                    color = "success"
+                    checkMSG = "Se ha encontrado un dato para tu búsqueda";
+                }else{
+                    color = "success"
+                    checkMSG = "Se han encontrado " + entries.length + " datos para tu búsqueda";
+                }
+            }
+    }
+
+    /*-------------------------PAGINACIÓN-------------------------*/
+
+        //getNextPage (B)
+        async function getNextPage() {
+    
+                console.log(totaldata);
+                if (page+10 > totaldata) {
+                    page = 1
+                } else {
+                    page+=10
+                }
+                
+                visible = true;
+                console.log("Charging page... Listing since: "+page);
+                const res = await fetch(BASE_API_PATH + "?limit=10&offset="+(-1+page));
+                //condicional imprime msg
+                color = "success";
+                checkMSG= (page+5 > totaldata) ? "Mostrando elementos "+(page)+"-"+totaldata : "Mostrando elementos "+(page)+"-"+(page+9);
+                if (totaldata == 0){
+                    console.log("ERROR Data was not erased");
+                    color = "danger";
+                    checkMSG= "¡No hay datos!";
+                }else if (res.ok) {
+                    console.log("Ok:");
+                    const json = await res.json();
+                    entries = json;
+                    console.log("Received " + entries.length + " resources.");
+                } else {
+                    checkMSG= res.status + ": " + res.statusText;
+                    console.log("ERROR!");
+                }
+            }
+    //getPreviewPage (B)
+        async function getPreviewPage() {
+            
+            console.log(totaldata);
+            if (page-10 > 1) {
+                page-=10; 
+            } else page = 1
+            visible = true;
+            console.log("Charging page... Listing since: "+page);
+            const res = await fetch(BASE_API_PATH + "?limit=10&offset="+(-1+page));
+            color = "success";
+            checkMSG = (page+5 > totaldata) ? "Mostrando elementos "+(page)+"-"+totaldata : "Mostrando elementos "+(page)+"-"+(page+9);
+            if (totaldata == 0){
+                console.log("ERROR Data was not erased");
+                color = "danger";
+                checkMSG = "¡No hay datos!";
+            }else if (res.ok) {
+                console.log("Ok:");
+                const json = await res.json();
+                entries = json;
+                console.log("Received "+entries.length+" resources.");
+            } else {
+                checkMSG = res.status+": "+res.statusText;
+                console.log("ERROR!");
+            }
+        }
+
+
+
 </script>
 
 <main>
@@ -183,6 +309,40 @@
         </Alert>
 
         <br>
+        <h4 style="text-align:center"><strong>Búsqueda general de parámetros</strong></h4>
+        <br>
+
+        <Table bordered responsive>
+            <thead>
+                <tr>
+            <th>Búsqueda por Pais</th>
+            <th>Búsqueda por Año</th>
+            <th>Búsqueda por Capacidad Instalada (MW)</th>
+            <th>Búsqueda por Generación (GW/h)</th>
+            <th>Búsqueda por Capacidad Instalada Renovable (MW)</th>
+            <th>Búsqueda por Generación renovable (GW/h)</th>
+            <th>Búsqueda por % Renovable</th>
+            <th>Búsqueda por Var</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type = "text" placeholder="País" bind:value="{sCountry}"></td>
+                <td><input type = "number" placeholder="2020" bind:value="{sYear}"></td>
+                <td><input type = "number" placeholder="0.0" bind:value="{sInstalled_capacity_mw}"></td>
+                <td><input type = "number" placeholder="0.0" bind:value="{sGeneration_gwh}"></td>
+                <td><input type = "number" placeholder="0.0" bind:value="{sRenovable_inst_cap_mw}"></td>
+                <td><input type = "number" placeholder="0.0" bind:value="{sRenovable_gen_gwh}"></td>
+                <td><input type = "number" placeholder="0.0" bind:value="{sRenovable_percentage}"></td>
+                <td><input type = "number" placeholder="0.0" bind:value="{sVar}"></td>
+
+            </tr>
+            </tbody>
+        </Table>
+        <div style="text-align:center">
+            <Button outline color="primary" on:click="{search (sCountry, sYear, sInstalled_capacity_mw, sGeneration_gwh, sRenovable_inst_cap_mw, sRenovable_gen_gwh, sRenovable_percentage, sVar)}">Buscar</Button>
+        </div>
+
 
         <Table bordered responsive> 
             <thead>
@@ -238,7 +398,35 @@
         <Button color="danger" on:click="{deleteALL}">
             Eliminar todo
         </Button>
-
+        <Button outline color="primary" on:click="{getPreviewPage}">
+            Atrás
+         </Button>
+         <Button outline color="primary" on:click="{getNextPage}">
+             Siguiente
+          </Button>
 
         {/await} 
 </main>
+<style>
+
+    input{
+        width: 100%;
+    }
+    
+    thead{
+        background-color: #246355;
+        border-bottom: solid 5px #0F362D;
+        color: white;
+    }
+    
+    tr:nth-child(even){
+        background-color: #ddd;
+    }
+    
+    tr:hover td{
+        background-color: #369681;
+        color: white;
+    }
+    
+    
+    </style>

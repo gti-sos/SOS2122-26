@@ -39,7 +39,7 @@
     <ul>
         <li>
             <a href="https://sos2122-26.herokuapp.com/api/v2/electricity-generation-stats/docs">[https://sos2122-26.herokuapp.com/api/v2/electricity-generation-stats/docs]</a>
-            <a href="localhost:8080/#/electricity-generation-stats">[https://sos2122-26.herokuapp.com/#/electricity-generation-stats]</a>
+            <a href="https://sos2122-26.herokuapp.com/#/electricity-generation-stats">[https://sos2122-26.herokuapp.com/#/electricity-generation-stats]</a>
             (developed by <a href="https://github.com/manueljgb">Manuel Jesús González Bueno</a>)
             </li>
         <li> 

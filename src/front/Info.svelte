@@ -7,11 +7,13 @@
             - <a href="https://github.com/manueljgb">
                 [Manuel Jesús González Bueno]
             </a>
+            - electricity-generation-stats
         </li>
         <li>
             - <a href="https://github.com/pabgalace">
                 [Pablo Galán Acedo]
             </a>
+            - defense-spent-stats
         </li>
         <li>
             - <a href="https://github.com/brico1994">

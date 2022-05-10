@@ -82,4 +82,13 @@
             (developed by <a href="https://github.com/pabgalace">Pablo Galán Acedo</a>)
         
     </ul>
+
+    <p style="font-weight: bold;">
+        -  Gráfica conjunta:
+    </p>
+    <ul>
+        <li>
+            <a href="https://sos2122-26.herokuapp.com/#/common-graph">[https://sos2122-26.herokuapp.com/#/common-graph]</a>
+        </li>
+    </ul>
 </main>

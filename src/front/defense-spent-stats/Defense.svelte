@@ -384,6 +384,8 @@
         <Button color="danger" on:click="{deleteALL}">
             Eliminar todo
         </Button>
+        
+        <a href="#/defense-graph"><Button outline color="primary">Ver gráfico</Button></a>
 
         <Button outline color="primary" on:click="{getPreviewPage}">
             Atrás

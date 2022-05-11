@@ -32,8 +32,10 @@ async function loadGraph(){
         electricityData = await resElectricity.json();
 
         console.log("procesing all data....");
+        console.log("??");
 
-        if((resDefense || resElectricity) == 0){
+        if(resDefense == 0 || resElectricity == 0){
+            console.log("entra dentro condicion 1");
             console.log("ERROR MSG");
             alert("Por favor, primero cargue los datos de alguna API");
             pop();
@@ -42,32 +44,40 @@ async function loadGraph(){
         /*-----Condiciones para cada API medidos por % VAR-----*/
 
         //DEFENSE API
-
+        console.log("hemos pasado el bucle");
         if(resDefense.ok){
+            console.log("dentro resDefense");
             defenseData.forEach(stat => {
                 if(stat.year == 2019){
                     defenseChartInfo.push(stat.country+"/"+stat.year);
                     defenseChartVar.push(stat["var"]);
                 }
             });
+        }else{
+            console.log("Fatal error");
         }
 
         //ELECTRICTITY API
 
         if(resElectricity.ok){
-            electricityData.forEach()(stat => {
+            console.log("dentro resElec");
+            electricityData.forEach(stat => {
                 if(stat.year == 2019){
                     electricityChartInfo.push(stat.country+"/"+stat.year);
                     electricityChartVar.push(stat["var"]);
                 }
             });
+        }else{
+            console.log("Error fatal");
         }
+
+        console.log("por aqui vamos");
         if(defenseChartInfo.length == 0 && electricityChartInfo.length == 0){
             console.log("ERROR MSG");
             alert("Por favor primero cargue los datos en al menos una de las APIs");
             pop();
         }
-
+        console.log("por aqui vamos");
          /*-----Declaración de Gráfica conjunta-----*/
         
         console.log("Generando datos...");

@@ -29,6 +29,7 @@
             defenseChartPib_percent.push(stat.pib_percent);
             defenseChartPer_capita.push(stat.per_capita);
             defenseChartVar.push(stat.var);
+            
         });
       }
       

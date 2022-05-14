@@ -10,7 +10,7 @@
         <h2>TEAM</h2>
         <div class="team">
             <div class="card manu_card">
-                <img src="./assets/Manu_profile.JPG" alt="Manu" style="width:100%">
+                <img src="./assets/Manu_profile.JPG" alt="Manu" >
                 <div class="container">
                   <h4 class="name"><b>
                       <a href="https://github.com/manueljgb">
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="card pablo_card">
-                <img src="./assets/Pablo_profile.jpeg" alt="Pablo" style="width:100%">
+                <img src="./assets/Pablo_profile.jpeg" alt="Pablo" >
                 <div class="container">
                   <h4 class="name"><b>
                       <a href="https://github.com/pabgalace">
@@ -51,7 +51,7 @@
                     </span>
             </div>
             <div class="section url">
-                    <h2 style="font-weight: bold;">
+                    <h2 >
                         URL:
                     </h2>
                     <span><a href="http://sos2122-26.herokuapp.com">[http://sos2122-26.herokuapp.com]</a></span>
@@ -118,7 +118,7 @@
             <div>
 
                 
-                <h2 style="font-weight: bold;">
+                <h2 >
                     Gráfica conjunta:
                 </h2>
                 

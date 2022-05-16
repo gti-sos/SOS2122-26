@@ -27,9 +27,9 @@
 
 <main>
 	<body >
-        <Navbar color="dark" class="text-align: left;" dark expand = "md" >
+        <Navbar color="dark" dark expand = "md" >
             <NavbarBrand href="/">SOS2021-26</NavbarBrand>
-            <Nav navbar >
+            <Nav navbar class='ms-auto'>
               <NavItem  >
                 <NavLink href="#/">Inicio</NavLink>
               </NavItem>

@@ -47,6 +47,7 @@ async function loadGraph(){
         console.log("hemos pasado el bucle");
         if(resDefense.ok){
             console.log("dentro resDefense");
+            defenseData.sort((a,b) => a.country.localeCompare(b.country));
             defenseData.forEach(stat => {
                 if(stat.year == 2019){
                     defenseChartInfo.push(stat.country+"/"+stat.year);
@@ -61,6 +62,7 @@ async function loadGraph(){
 
         if(resElectricity.ok){
             console.log("dentro resElec");
+            electricityData.sort((a,b) => a.country.localeCompare(b.country));
             electricityData.forEach(stat => {
                 if(stat.year == 2019){
                     electricityChartInfo.push(stat.country+"/"+stat.year);
@@ -104,7 +106,7 @@ async function loadGraph(){
                 name: ' Variacion en Gasto en Defensa',
                 data: defenseChartVar
             }, {
-                name: 'Variación en Consumo de Electricidad',
+                name: 'Variación en Producción de Electricidad',
                 data: electricityChartVar
             }]
         });
@@ -132,7 +134,7 @@ async function loadGraph(){
   <figure class="highcharts-figure">
     <div id="container"></div>
     <p class="highcharts-description">
-      Gráfico en el que se representa la variacion en Gasto en Defensa y Consumo de Electricidad en el año 2019
+      Gráfico en el que se representa la variacion en Gasto en Defensa y Producción de Electricidad en el año 2019
     </p>
   </figure>
 

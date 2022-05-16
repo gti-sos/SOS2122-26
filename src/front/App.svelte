@@ -9,6 +9,7 @@
 	import ElectricityEdit from "./electricity-generation-stats/ElectricityEdit.svelte";
 	import GraphElectricity from "./electricity-generation-stats/GraphElectricity.svelte";
 	import CommonGraph from "./CommonGraph.svelte";
+	import {Navbar,NavbarBrand,Nav,NavItem,NavLink } from 'sveltestrap';
 	
 	const routes = {
 		
@@ -25,5 +26,33 @@
 </script>
 
 <main>
+	<body >
+        <Navbar color="dark" class="text-align: left;" dark expand = "md" >
+            <NavbarBrand href="/">SOS2021-26</NavbarBrand>
+            <Nav navbar >
+              <NavItem  >
+                <NavLink href="#/">Inicio</NavLink>
+              </NavItem>
+              <NavItem  >
+                <NavLink href="#/info">Información</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="#/defense-spent-stats">Tabla defensa</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="#/electricity-generation-stats">Tabla electricidad</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="#/common-graph">Tabla conjunta</NavLink>
+              </NavItem>
+            </Nav>
+        </Navbar>
+    
+    </body>
+
+
+
+
 	<Router {routes} />
+
 </main>

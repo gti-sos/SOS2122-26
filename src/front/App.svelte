@@ -7,6 +7,7 @@
 	import DefenseGraph from "./defense-spent-stats/GraphDefense.svelte";
 	import Electricity from "./electricity-generation-stats/Electricity.svelte";
 	import ElectricityEdit from "./electricity-generation-stats/ElectricityEdit.svelte";
+	import GraphElectricity from "./electricity-generation-stats/GraphElectricity.svelte";
 	import CommonGraph from "./CommonGraph.svelte";
 	
 	const routes = {
@@ -16,6 +17,7 @@
 		"/defense-spent-stats/:country/:year" : DefenseEdit,
 		"/defense-graph" : DefenseGraph,
 		"/electricity-generation-stats" : Electricity,
+		"/electricity-graph" : GraphElectricity,
 		"/electricity-generation-stats/:country/:year" : ElectricityEdit,
 		"/info": Info,
 		"/common-graph" : CommonGraph

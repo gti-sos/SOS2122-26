@@ -35,6 +35,11 @@
       
       console.log("Defense Spent Chart Data: " + defenseChartData);
       Highcharts.chart("container", {
+
+        chart: {
+                type: 'bar'
+            },
+
         title: {
           text: "Estadísticas sobre el gasto militar",
         },
@@ -143,7 +148,7 @@
       <figure class="highcharts-figure">
         <div id="container" />
         <p class="highcharts-description">
-          Representación lineal del gasto en Defensa por País y Año
+          Representación de tipo bar del gasto en Defensa por País y Año
           representado en cada tipo de gasto.
         </p>
       </figure>

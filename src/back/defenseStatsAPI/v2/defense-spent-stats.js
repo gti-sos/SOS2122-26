@@ -1,11 +1,30 @@
 var Datastore = require("nedb");
 var db = new Datastore();
 var BASE_API_PATH = "/api/v2/defense-spent-stats"; 
+const request = require("request");
 
 var defenseStats = [];
 
 
+/* Variables exteriores para instegraciones */
+
+var extPathV1="/remoteAPIV1";
+var extApiServerHostV1 ="https://sos2122-27.herokuapp.com/api/v2/public-debt-stats";
+
+
+
+
+
 module.exports.register = (app) => {
+
+    //Integraciones
+
+    app.use(extPathV1, function(req, res) {
+        var url = extApiServerHostV1 + req.url;
+        console.log('piped: ' + req.baseUrl + req.url);
+        req.pipe(request(url)).pipe(res);
+    });
+
     
     //Portal de Documentacion
 

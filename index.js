@@ -1,12 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const Datastore = require("nedb");
-
-
-const BASE_API_URL = "/api/v1";
-
-
-
+const request = require("request");
+const cors = require("cors");
 
 //BASE DE DATOS
 
@@ -20,6 +16,11 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 
+//CORS
+
+app.use(cors());
+
+//BODY PARSER
 
 app.use("/",express.static('public'));
 app.use(bodyParser.json());
@@ -49,8 +50,28 @@ electricity_generation_stats_APIv2.register(app);
 
 
 
-//--------------------- Parte opcional Bruno Alvaro Rico Barrilero ---------------------
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//--------------------- Parte opcional Bruno Alvaro Rico Barrilero ---------------------
+const BASE_API_URL = "/api/v1";
 //Array de objetos
 
 

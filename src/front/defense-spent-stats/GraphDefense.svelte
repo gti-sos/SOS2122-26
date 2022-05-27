@@ -157,6 +157,13 @@
   </main>
   
   <style>
+
+    .highcharts-figure{
+      text-align: center;
+      height:auto;
+    }
+
+
     main {
       text-align: center;
       padding: 1em;

@@ -4,24 +4,34 @@
 	import Info from "./Info.svelte";
 	import Defense from "./defense-spent-stats/Defense.svelte";
 	import DefenseEdit from "./defense-spent-stats/DefenseEdit.svelte";
-	import DefenseGraph from "./defense-spent-stats/GraphDefense.svelte";
+	import DefenseGraph1 from "./defense-spent-stats/GraphDefense.svelte";
 	import Electricity from "./electricity-generation-stats/Electricity.svelte";
 	import ElectricityEdit from "./electricity-generation-stats/ElectricityEdit.svelte";
 	import GraphElectricity from "./electricity-generation-stats/GraphElectricity.svelte";
 	import CommonGraph from "./CommonGraph.svelte";
 	import {Navbar,NavbarBrand,Nav,NavItem,NavLink } from 'sveltestrap';
+
+	//Integraciones Pablo
+	import DefenseGraph2 from "./defense-spent-stats/FusionGraphDefense.svelte";
+	import Prueba from "./defense-spent-stats/integrations/prueba.svelte";
+	import Integration1 from "./defense-spent-stats/integrations/Integration1.svelte";
+	import Integration2 from "./defense-spent-stats/integrations/Integration2.svelte";
 	
 	const routes = {
 		
 		"/": Home,
 		"/defense-spent-stats" : Defense,
 		"/defense-spent-stats/:country/:year" : DefenseEdit,
-		"/defense-graph" : DefenseGraph,
+		"/defense-spent-stats/defense-graph-1" : DefenseGraph1,
 		"/electricity-generation-stats" : Electricity,
 		"/electricity-graph" : GraphElectricity,
 		"/electricity-generation-stats/:country/:year" : ElectricityEdit,
 		"/info": Info,
-		"/common-graph" : CommonGraph
+		"/analytics" : CommonGraph,
+		"/prueba" : Prueba,
+		"/defense-spent-stats/int-1" : Integration1,
+		"/defense-spent-stats/int-2" : Integration2,
+		"/defense-spent-stats/defense-graph-2" : DefenseGraph2
 	};
 </script>
 
@@ -43,7 +53,7 @@
                 <NavLink href="#/electricity-generation-stats">Tabla electricidad</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#/common-graph">Tabla conjunta</NavLink>
+                <NavLink href="#/analytics">Tabla conjunta</NavLink>
               </NavItem>
             </Nav>
         </Navbar>

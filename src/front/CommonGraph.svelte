@@ -73,6 +73,8 @@ async function loadGraph(){
         }
 
         console.log("por aqui vamos");
+        console.log(defenseChartInfo);
+        console.log(electricityChartInfo);
         if(defenseChartInfo.length == 0 && electricityChartInfo.length == 0){
             console.log("ERROR MSG");
             alert("Por favor primero cargue los datos en al menos una de las APIs");

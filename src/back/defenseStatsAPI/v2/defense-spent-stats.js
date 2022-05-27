@@ -11,6 +11,9 @@ var defenseStats = [];
 var extPathV1="/remoteAPIV1";
 var extApiServerHostV1 ="https://sos2122-27.herokuapp.com/api/v2/public-debt-stats";
 
+var extPathV2="/remoteAPIV2";
+var extApiServerHostV2 ="http://sos2122-10.herokuapp.com/api/v2/population-levels";
+
 
 
 
@@ -21,6 +24,12 @@ module.exports.register = (app) => {
 
     app.use(extPathV1, function(req, res) {
         var url = extApiServerHostV1 + req.url;
+        console.log('piped: ' + req.baseUrl + req.url);
+        req.pipe(request(url)).pipe(res);
+    });
+
+    app.use(extPathV2, function(req, res) {
+        var url = extApiServerHostV2 + req.url;
         console.log('piped: ' + req.baseUrl + req.url);
         req.pipe(request(url)).pipe(res);
     });
@@ -81,7 +90,15 @@ module.exports.register = (app) => {
 
             {country: "australia" , year: 2019, spen_mill_eur : 23114.5 , public_percent: 4.89 , pib_percent: 1.88 , per_capita: 904  , var: -4.18 },
 
-            {country: "australia" , year: 2020, spen_mill_eur : 25767.9 , public_percent: 4.64 , pib_percent: 2.06 , per_capita: 1003 , var: 6.91 }
+            {country: "australia" , year: 2020, spen_mill_eur : 25767.9 , public_percent: 4.64 , pib_percent: 2.06 , per_capita: 1003 , var: 6.91 },
+
+            {country: "bangladesh" , year: 2020, spen_mill_eur : 3690.5 , public_percent: 9.31 , pib_percent: 1.31 , per_capita: 22 , var: 2.04 },
+
+            {country: "albania" , year: 2020, spen_mill_eur : 204.0 , public_percent: 4.67 , pib_percent: 1.54 , per_capita: 72 , var: 17.21 },
+
+            {country: "barbados" , year: 2020, spen_mill_eur : 8.8 , public_percent: 1.47 , pib_percent: 0.59 , per_capita: 16 , var: 2.95 },
+            
+            {country: "gabon" , year: 2020, spen_mill_eur : 237.2 , public_percent: 8.47 , pib_percent: 1.76 , per_capita: 107 , var: -1.08 }
         ];
 
         // Inicialización base de datos

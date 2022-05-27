@@ -23,7 +23,7 @@
     let visible = false;
     let color = "danger";
     let page = 1;
-    let totaldata=20; //Numero total de datos en la DB
+    let totaldata=24; //Numero total de datos en la DB
 
     let sCountry = "";
     let sYear = "";
@@ -39,7 +39,7 @@
 
     async function getEntries(){
         console.log("Fetching entries....");
-        const res = await fetch("/api/v2/defense-spent-stats"); 
+        const res = await fetch("/api/v2/defense-spent-stats"+ "?limit=12&offset=0"); 
         if(res.ok){
             console.log("Ok:");
             const data = await res.json();
@@ -57,13 +57,14 @@
  
         console.log("Fetching entry data...");
         await fetch(BASE_API_PATH + "/loadInitialData");
-        const res = await fetch(BASE_API_PATH + "?limit=10&offset=0");
+        const res = await fetch(BASE_API_PATH + "?limit=12&offset=0");
+        const total = await fetch(BASE_API_PATH);
         if (res.ok) {
             console.log("Ok:");
             const json = await res.json();
             entries = json;
             visible = true;
-            totaldata=20;
+            totaldata=24;
             console.log("Received " + entries.length + " entry data.");
             color = "success";
             checkMSG = "Datos cargados correctamente";
@@ -228,18 +229,18 @@
         async function getNextPage() {
     
                 console.log(totaldata);
-                if (page+10 > totaldata) {
+                if (page+12 > totaldata) {
                     page = 1
                 } else {
-                    page+=10
+                    page+=12
                 }
                 
                 visible = true;
                 console.log("Charging page... Listing since: "+page);
-                const res = await fetch(BASE_API_PATH + "?limit=10&offset="+(-1+page));
+                const res = await fetch(BASE_API_PATH + "?limit=12&offset="+(-1+page));
                 //condicional imprime msg
                 color = "success";
-                checkMSG= (page+5 > totaldata) ? "Mostrando elementos "+(page)+"-"+totaldata : "Mostrando elementos "+(page)+"-"+(page+9);
+                checkMSG= (page+6 > totaldata) ? "Mostrando elementos "+(page)+"-"+totaldata : "Mostrando elementos "+(page)+"-"+(page+11);
                 if (totaldata == 0){
                     console.log("ERROR Data was not erased");
                     color = "danger";
@@ -258,14 +259,14 @@
         async function getPreviewPage() {
             
             console.log(totaldata);
-            if (page-10 > 1) {
-                page-=10; 
+            if (page-12 > 1) {
+                page-=12; 
             } else page = 1
             visible = true;
             console.log("Charging page... Listing since: "+page);
-            const res = await fetch(BASE_API_PATH + "?limit=10&offset="+(-1+page));
+            const res = await fetch(BASE_API_PATH + "?limit=12&offset="+(-1+page));
             color = "success";
-            checkMSG = (page+5 > totaldata) ? "Mostrando elementos "+(page)+"-"+totaldata : "Mostrando elementos "+(page)+"-"+(page+9);
+            checkMSG = (page+6 > totaldata) ? "Mostrando elementos "+(page)+"-"+totaldata : "Mostrando elementos "+(page)+"-"+(page+11);
             if (totaldata == 0){
                 console.log("ERROR Data was not erased");
                 color = "danger";
@@ -385,7 +386,8 @@
             Eliminar todo
         </Button>
         
-        <a href="#/defense-graph"><Button outline color="primary">Ver gráfico</Button></a>
+        <a href="#/defense-spent-stats/defense-graph-1"><Button outline color="primary">Ver gráfico</Button></a>
+        <a href="#/defense-spent-stats/defense-graph-2"><Button outline color="primary">Ver gráfico Fusion</Button></a>
 
         <Button outline color="primary" on:click="{getPreviewPage}">
             Atrás

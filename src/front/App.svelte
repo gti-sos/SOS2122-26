@@ -16,6 +16,8 @@
 	import Prueba from "./defense-spent-stats/integrations/prueba.svelte";
 	import Integration1 from "./defense-spent-stats/integrations/Integration1.svelte";
 	import Integration2 from "./defense-spent-stats/integrations/Integration2.svelte";
+	import Integration3 from "./defense-spent-stats/integrations/Integration3.svelte";
+	import Integration4 from "./defense-spent-stats/integrations/Integration4.svelte";
 	
 	const routes = {
 		
@@ -31,6 +33,8 @@
 		"/prueba" : Prueba,
 		"/defense-spent-stats/int-1" : Integration1,
 		"/defense-spent-stats/int-2" : Integration2,
+		"/defense-spent-stats/int-3" : Integration3,
+		"/defense-spent-stats/int-4" : Integration4,
 		"/defense-spent-stats/defense-graph-2" : DefenseGraph2
 	};
 </script>

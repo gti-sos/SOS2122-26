@@ -14,6 +14,12 @@ var extApiServerHostV1 ="https://sos2122-27.herokuapp.com/api/v2/public-debt-sta
 var extPathV2="/remoteAPIV2";
 var extApiServerHostV2 ="http://sos2122-10.herokuapp.com/api/v2/population-levels";
 
+var extPathV3="/remoteAPIV3";
+var extApiServerHostV3 = "https://countriesnow.space/api/v0.1/countries/population/cities";
+
+// var extPathV4="/remoteAPIV4";
+// var extApiServerHostV4 = "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/europe?rapidapi-key=16a223c8b0msh4bfbfb189f95a0dp1822e1jsnfbfe42809539";
+
 
 
 
@@ -33,6 +39,18 @@ module.exports.register = (app) => {
         console.log('piped: ' + req.baseUrl + req.url);
         req.pipe(request(url)).pipe(res);
     });
+
+    app.use(extPathV3, function(req, res) {
+        var url = extApiServerHostV3 + req.url;
+        console.log('piped: ' + req.baseUrl + req.url);
+        req.pipe(request(url)).pipe(res);
+    });
+
+    // app.use(extPathV4, function(req, res) {
+    //     var url = extApiServerHostV4 + req.url;
+    //     console.log('piped: ' + req.baseUrl + req.url);
+    //     req.pipe(request(url)).pipe(res);
+    // });
 
     
     //Portal de Documentacion

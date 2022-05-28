@@ -39,6 +39,9 @@ defenseStatsAPIv1.register(app,db_defense_spent_stats);
 const defenseStatsAPIv2 = require("./src/back/defenseStatsAPI/v2/defense-spent-stats.js");
 defenseStatsAPIv2.register(app);
 
+const api_Covid = require("./src/back/defenseStatsAPI/covid.js");
+api_Covid.register(app);
+
 
 
 

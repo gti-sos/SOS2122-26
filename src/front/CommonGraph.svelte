@@ -2,9 +2,12 @@
 
 import { pop }from "svelte-spa-router";
 import Button from "sveltestrap/src/Button.svelte";
+import {onMount} from 'svelte';
 
 const BASE_DEFENSE_PATH = "/api/v2/defense-spent-stats";
 const BASE_ELECTRICITY_PATH = "/api/v2/electricity-generation-stats";
+
+const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 /*---- Datos Defensa ----*/
 
@@ -18,34 +21,20 @@ let electricityData = [];
 let electricityChartInfo = [];
 let electricityChartVar = [];
 
-async function loadGraph(){
+async function loadStats(){
         console.log("Fetching graphic data...");
 
         /*-----Const por API-----*/
-        
+        await fetch(BASE_DEFENSE_PATH + "/loadInitialData");
         const resDefense = await fetch(BASE_DEFENSE_PATH);
+        await fetch(BASE_ELECTRICITY_PATH + "/loadInitialData");
         const resElectricity = await fetch(BASE_ELECTRICITY_PATH);
 
+
         /*-----Inicializamos los datos-----*/
+        if (resDefense.ok&&resElectricity.ok){
 
-        defenseData = await resDefense.json();
-        electricityData = await resElectricity.json();
-
-        console.log("procesing all data....");
-
-        if(resDefense == 0 || resElectricity == 0){
-            console.log("entra dentro condicion 1");
-            console.log("ERROR MSG");
-            alert("Por favor, primero cargue los datos de alguna API");
-            pop();
-        }
-
-        /*-----Condiciones para cada API medidos por % VAR-----*/
-
-        //DEFENSE API
-        console.log("hemos pasado el bucle");
-        if(resDefense.ok){
-            console.log("dentro resDefense");
+            defenseData = await resDefense.json();
             defenseData.sort((a,b) => a.country.localeCompare(b.country));
             defenseData.forEach(stat => {
                 if(stat.year == 2019){
@@ -53,14 +42,8 @@ async function loadGraph(){
                     defenseChartVar.push(stat["var"]);
                 }
             });
-        }else{
-            console.log("Fatal error");
-        }
 
-        //ELECTRICTITY API
-
-        if(resElectricity.ok){
-            console.log("dentro resElec");
+            electricityData = await resElectricity.json();
             electricityData.sort((a,b) => a.country.localeCompare(b.country));
             electricityData.forEach(stat => {
                 if(stat.year == 2019){
@@ -68,64 +51,66 @@ async function loadGraph(){
                     electricityChartVar.push(stat["var"]);
                 }
             });
+
+            console.log(defenseChartInfo);
+            console.log(electricityChartInfo);
+
+            await delay(2000);
+
+            /*-----Declaración de Gráfica conjunta-----*/
+
+            loadGraph()
+
         }else{
-            console.log("Error fatal");
+            console.log("Error al cargar las apis");
         }
-
-        console.log("por aqui vamos");
-        console.log(defenseChartInfo);
-        console.log(electricityChartInfo);
-        if(defenseChartInfo.length == 0 && electricityChartInfo.length == 0){
-            console.log("ERROR MSG");
-            alert("Por favor primero cargue los datos en al menos una de las APIs");
-            pop();
-        }
-        console.log("por aqui vamos");
-         /*-----Declaración de Gráfica conjunta-----*/
-        
-        console.log("Generando datos...");
-        Highcharts.chart('container', {
-            chart: {
-                type: 'lollipop'
-            },
-            title: {
-                text: 'Gráfica conjunta por Países'
-            },
-            xAxis: {  
-                allowDecimals: false,
-                title: {
-                    text: 'País/año'
-                },
-                categories: defenseChartInfo,
-            },
-            yAxis: {
-                title: {
-                    text: 'Variación'
-                },
-            },
-            series: [{
-                name: ' Variacion en Gasto en Defensa',
-                data: defenseChartVar
-            }, {
-                name: 'Variación en Producción de Electricidad',
-                data: electricityChartVar
-            }]
-        });
-
     }
+
+    async function loadGraph(){
+
+        console.log("Cargando gráfica");
+
+        Highcharts.chart('container', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Gráfica conjunta por Países'
+                },
+                xAxis: {  
+                    allowDecimals: false,
+                    title: {
+                        text: 'País/año'
+                    },
+                    categories: defenseChartInfo,
+                },
+                yAxis: {
+                    title: {
+                        text: 'Variación'
+                    },
+                },
+                series: [{
+                    name: ' Variacion en Gasto en Defensa',
+                    data: defenseChartVar
+                }, {
+                    name: 'Variación en Producción de Electricidad',
+                    data: electricityChartVar
+                }]
+            });
+    }
+    onMount(loadStats);
+
+
 
 </script>
 
 <svelte:head>
 
-  <script src="https://code.highcharts.com/highcharts.js"></script>
-  <script src="https://code.highcharts.com/modules/series-label.js"></script>
-  <script src="https://code.highcharts.com/modules/exporting.js"></script>
-  <script src="https://code.highcharts.com/highcharts-more.js"></script>
-  <script src="https://code.highcharts.com/modules/export-data.js"></script>
-  <script src="https://code.highcharts.com/modules/dumbbell.js"></script>
-  <script src="https://code.highcharts.com/modules/lollipop.js"></script>
-  <script src="https://code.highcharts.com/modules/accessibility.js" on:load="{loadGraph}"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js" on:load="{loadGraph}"></script>
 
 </svelte:head>
 

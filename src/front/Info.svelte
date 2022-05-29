@@ -123,7 +123,7 @@
                 </h2>
                 
                 <p>
-                    <a href="https://sos2122-26.herokuapp.com/#/common-graph">[https://sos2122-26.herokuapp.com/#/common-graph]</a>
+                    <a href="https://sos2122-26.herokuapp.com/#/analytics">[https://sos2122-26.herokuapp.com/#/analytics]</a>
                 </p>
             </div>
         </div>

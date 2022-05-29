@@ -10,6 +10,7 @@
 	import GraphElectricity from "./electricity-generation-stats/GraphElectricity.svelte";
 	import CommonGraph from "./CommonGraph.svelte";
 	import {Navbar,NavbarBrand,Nav,NavItem,NavLink } from 'sveltestrap';
+	import Integraciones from "./Integraciones.svelte";
 
 	//Integraciones Pablo
 	import DefenseGraph2 from "./defense-spent-stats/FusionGraphDefense.svelte";
@@ -18,6 +19,8 @@
 	import Integration2 from "./defense-spent-stats/integrations/Integration2.svelte";
 	import Integration3 from "./defense-spent-stats/integrations/Integration3.svelte";
 	import Integration4 from "./defense-spent-stats/integrations/Integration4.svelte";
+	import Integration5 from "./defense-spent-stats/integrations/Integration5.svelte";
+	import Integration6 from "./defense-spent-stats/integrations/Integration6.svelte";
 	
 	const routes = {
 		
@@ -35,7 +38,10 @@
 		"/defense-spent-stats/int-2" : Integration2,
 		"/defense-spent-stats/int-3" : Integration3,
 		"/defense-spent-stats/int-4" : Integration4,
-		"/defense-spent-stats/defense-graph-2" : DefenseGraph2
+		"/defense-spent-stats/int-5" : Integration5,
+		"/defense-spent-stats/int-6" : Integration6,
+		"/defense-spent-stats/defense-graph-2" : DefenseGraph2,
+		"/integrations" : Integraciones
 	};
 </script>
 
@@ -57,7 +63,10 @@
                 <NavLink href="#/electricity-generation-stats">Tabla electricidad</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#/analytics">Tabla conjunta</NavLink>
+                <NavLink href="#/analytics">Gráfica conjunta</NavLink>
+              </NavItem>
+			  <NavItem>
+                <NavLink href="#/integrations">Integraciones</NavLink>
               </NavItem>
             </Nav>
         </Navbar>

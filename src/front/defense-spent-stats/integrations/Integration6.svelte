@@ -18,7 +18,7 @@ fcRoot(FusionCharts, Charts, FusionTheme);
     
     
     
-const WEATHER_API = "http://api.weatherapi.com/v1/forecast.json?key=5edf233a7e82475d8f3234418210306&q=SVQ";
+const WEATHER_API = "https://api.weatherapi.com/v1/forecast.json?key=5edf233a7e82475d8f3234418210306&q=SVQ";
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 let chartConfigs = {};

@@ -1,10 +1,39 @@
 var Datastore = require("nedb");
 var db = new Datastore();
 var BASE_API_PATH = "/api/v2/electricity-generation-stats";
+const request = require("request");
 
 var electricityStats = [];
 
+/* Variables exteriores para instegraciones */
+
+var extPathV1 = "/externalAPIV1";
+var extApiServerHostV1 =
+  "https://sos2122-27.herokuapp.com/api/v2/smi_stats";
+
+// var extPathV3 = "/remoteAPIV3";
+// var extApiServerHostV3 =
+//   "https://countriesnow.space/api/v0.1/countries/population/cities";
+
+// var extPathV4="/remoteAPIV4";
+// var extApiServerHostV4 = "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/europe?rapidapi-key=16a223c8b0msh4bfbfb189f95a0dp1822e1jsnfbfe42809539";
+
 module.exports.register = (app) => {
+  //Integraciones
+
+  app.use(extPathV1, function (req, res) {
+    var url = extApiServerHostV1 + req.url;
+    console.log("piped: " + req.baseUrl + req.url);
+    req.pipe(request(url)).pipe(res);
+  });
+
+
+  // app.use(extPathV3, function (req, res) {
+  //   var url = extApiServerHostV3 + req.url;
+  //   console.log("piped: " + req.baseUrl + req.url);
+  //   req.pipe(request(url)).pipe(res);
+  // });
+
   //Portal de Documentacion
 
   app.get(BASE_API_PATH + "/docs", (req, res) => {
@@ -203,7 +232,7 @@ module.exports.register = (app) => {
         var: 5.72,
       },
       {
-        country: "autralia",
+        country: "australia",
         year: 2020,
         installed_capacity_mw: 82517,
         generation_gwh: 243309,
@@ -286,8 +315,6 @@ module.exports.register = (app) => {
       });
   });
 
-
-  
   //GET A UN RECURSO CONCRETO DE ELEC. POR COUNTRY/YEAR
   app.get(BASE_API_PATH + "/:country/:year", (req, res) => {
     var reqCountry = req.params.country;

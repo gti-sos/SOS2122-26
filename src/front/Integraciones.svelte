@@ -36,7 +36,9 @@
             <h2 >
                 Integraciones Manuel:
             </h2>
-
+            <p> 
+                <a href="#/electricity-generation-stats/apis-sos">Usos de APIS</a>
+            </p>
         </div>
 
 

@@ -7,12 +7,11 @@
 	import DefenseGraph1 from "./defense-spent-stats/GraphDefense.svelte";
 	import Electricity from "./electricity-generation-stats/Electricity.svelte";
 	import ElectricityEdit from "./electricity-generation-stats/ElectricityEdit.svelte";
-	import GraphElectricity from "./electricity-generation-stats/GraphElectricity.svelte";
 	import CommonGraph from "./CommonGraph.svelte";
 	import {Navbar,NavbarBrand,Nav,NavItem,NavLink } from 'sveltestrap';
 	import Integraciones from "./Integraciones.svelte";
 	import Videos from "./Videos.svelte";
-
+	
 	//Integraciones Pablo
 	import DefenseGraph2 from "./defense-spent-stats/FusionGraphDefense.svelte";
 	import Prueba from "./defense-spent-stats/integrations/prueba.svelte";
@@ -23,6 +22,12 @@
 	import Integration5 from "./defense-spent-stats/integrations/Integration5.svelte";
 	import Integration6 from "./defense-spent-stats/integrations/Integration6.svelte";
 	
+	
+	
+	//Integraciones Manuel
+	import GraphElectricity from "./electricity-generation-stats/GraphElectricity.svelte";
+	import API_Uses from "./electricity-generation-stats/integrations/API_Uses.svelte";
+	
 	const routes = {
 		
 		"/": Home,
@@ -30,8 +35,9 @@
 		"/defense-spent-stats/:country/:year" : DefenseEdit,
 		"/defense-spent-stats/defense-graph-1" : DefenseGraph1,
 		"/electricity-generation-stats" : Electricity,
-		"/electricity-graph" : GraphElectricity,
 		"/electricity-generation-stats/:country/:year" : ElectricityEdit,
+		"/electricity-generation-stats/electricity-graph" : GraphElectricity,
+		"/electricity-generation-stats/apis-sos" : API_Uses,
 		"/info": Info,
 		"/analytics" : CommonGraph,
 		"/prueba" : Prueba,

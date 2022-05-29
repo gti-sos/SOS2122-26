@@ -1,23 +1,23 @@
 <script>
     import { onMount } from "svelte";
     import {Col, Container, Row} from "sveltestrap";
-    import App from "../App.svelte";
-    import Home from "../Home.svelte";
-
     const delay = (ms) => new Promise((res) => setTimeout(res, ms));
     let apiData = [];
 
-    let dataComm = [];
-    let dataPass = [];
-    let dataPer1000 = [];
+    let globalData = [];
+
+    let elecGenData = [];
+    let renovableGenData = [];
+    let instaledCapData = [];
 
     const date = new Date();
-    let minY = date.getFullYear();
+    let minY = 2020;
     let maxY = 0;
 
     let m = new Map();
     let m2 = new Map();
     let m3 = new Map();
+    let global = new Map();
 
     let years = [];
 
@@ -52,6 +52,13 @@
             });
 
             apiData.forEach((e) => {
+                if (global.has(e.year)) {
+                    let lAux =  [e.country, e.installed_capacity_mw , e.generation_gwh , e.renovable_inst_cap_mw ,e.renovable_gen_gwh];
+                    global.get(e.year).push(lAux);
+                } else {
+                    let lAux = [e.country, e.installed_capacity_mw , e.generation_gwh , e.renovable_inst_cap_mw ,e.renovable_gen_gwh];
+                    global.set(e.year, [lAux]);
+                }
                 if (m.has(e.year)) {
                     let lAux =  [e.country, e.installed_capacity_mw];
                     m.get(e.year).push(lAux);
@@ -65,23 +72,14 @@
                 } else {
                     m2.set(e.country, [e.generation_gwh]);
                 }
-                if (m2.has(e.country)) {
-                    m2.get(e.country).push(e.renovable_inst_cap_mw);
-                } else {
-                    m2.set(e.country, [e.renovable_inst_cap_mw]);
-                }
+            
 
                 if (m3.has(e.country)) {
                     m3.get(e.country).push(e.renovable_gen_gwh);
                 } else {
                     m3.set(e.country, [e.renovable_gen_gwh]);
                 }
-                if (m3.has(e.country)) {
-                    m3.get(e.country).push(e.renovable_percentage);
-                } else {
-                    m3.set(e.country, [e.renovable_percentage]);
-                }
-
+               
                 if (e.year < minY) {
                     minY = e.year;
                 }
@@ -91,9 +89,9 @@
             });
 
 
-            dataPer1000 = crearDataMorris(m);
-            dataComm = crearData(m2, sortedS);
-            dataPass = crearData(m3, sortedS);
+            instaledCapData = crearDataMorris(m);
+            elecGenData = crearData(m2, sortedS);
+            renovableGenData = crearData(m3, sortedS);
 
             await delay(1000);
             loadGraph();
@@ -150,63 +148,112 @@
 
     async function loadGraph() {
 
-        Highcharts.chart("container", {
+        var options = {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'DATOS GENERACIÓN ENERGÍA'
+        },
+        xAxis: {
+            categories: [
+                
+            ]
+        },
+        yAxis: [{
+            min: 0,
             title: {
-                text: `Capacidad instalada , ${minY}-${maxY}`,
+                text: 'Energía Generada'
+            }
+        }, {
+            title: {
+                text: 'Capacidad instalada'
             },
-            subtitle: {
-                text: "Fuente: datosmacro.com",
-            },
+            opposite: true
+        }],
+        legend: {
+            shadow: false
+        },
+        tooltip: {
+            shared: true
+        },
+        plotOptions: {
+            column: {
+                grouping: false,
+                shadow: false,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Capacidad instalada MW',
+            color: 'rgba(165,170,217,1)',
+            data: [
 
-            xAxis: {
-                allowDecimals: false,
-                accessibility: {
-                    rangeDescription: `Rango: ${minY} a ${maxY}`,
-                },
+            ],
+            pointPadding: 0.3,
+            pointPlacement: -0.2
+        }, {
+            name: 'Generación de energía MW/h',
+            color: 'rgba(126,86,134,.9)',
+            data: [
+
+            ],
+            tooltip: {
+                valueSuffix: ' M'
             },
-            yAxis: {
-                title: {
-                    text: "MW",
-                },
+            pointPadding: 0.4,
+            pointPlacement: -0.2
+        }, {
+            name: 'Capacidad instalada renovable MW',
+            color: 'rgba(248,161,63,1)',
+            data: [
+
+            ],
+            
+            pointPadding: 0.3,
+            pointPlacement: 0.2,
+            yAxis: 1
+        }, {
+            name: 'Generación de energía renovable MW/h',
+            color: 'rgba(186,60,61,.9)',
+            data: [
+
+            ],
+            tooltip: {
+
+                valueSuffix: ' MW/h'
             },
-            legend: {
-                layout: "vertical",
-                align: "right",
-                verticalAlign: "middle",
-            },
-            plotOptions: {
-                series: {
-                    label: {
-                        connectorAllowed: false,
-                    },
-                    pointStart: minY,
-                },
-            },
-            series: dataComm,
-            responsive: {
-                rules: [
-                    {
-                        condition: {
-                            maxWidth: 500,
-                        },
-                        chartOptions: {
-                            legend: {
-                                layout: "horizontal",
-                                align: "center",
-                                verticalAlign: "bottom",
-                            },
-                        },
-                    },
-                ],
-            },
+            pointPadding: 0.4,
+            pointPlacement: 0.2,
+            yAxis: 1
+        }]
+    };
+
+        global.get(2020).forEach(e => {
+            options.xAxis.categories.push(e[0]);
+            options.series[0].data.push(e[1]);    
+            options.series[1].data.push(e[2]);
+            options.series[2].data.push(e[3]);
+            options.series[3].data.push(e[4]);
         });
+
+        global.get(2019).forEach(e => {
+            options.xAxis.categories.push(e[0]);
+            options.series[0].data.push(e[1]);    
+            options.series[1].data.push(e[2]);
+            options.series[2].data.push(e[3]);
+            options.series[3].data.push(e[4]);
+        });
+
+        Highcharts.chart('container', options);
+
 
         Highcharts.chart("container2", {
             chart: {
                 type: "column",
             },
             title: {
-                text: `Capacidad instalada renovable, ${minY}-${maxY}`,
+                text: `Energía generada renovable, ${minY}-${maxY}`,
             },
             subtitle: {
                 text: "Fuente: datosmacro.com",
@@ -238,12 +285,12 @@
                     borderWidth: 0,
                 },
             },
-            series: dataPass,
+            series: renovableGenData,
         });
 
         new Morris.Bar({
             element: "container3",
-            data: dataPer1000,
+            data: instaledCapData,
             xkey: 'year',
             ykeys: yK,
             labels: lab,
@@ -251,7 +298,7 @@
             hideHover: 'auto',
             behaveLikeLine: true,
             resize: true,
-            stacked: true,
+            stacked: false,
         });
     }
     onMount(getData);
@@ -284,7 +331,7 @@
 
     <figure class="highcharts-figure">
         <Row>
-            <h5 class="text-center">Generación de electricidad (Gráfico Morris.js)</h5>
+            <h5 class="text-center">Capacidad instalada MW (Gráfico Morris.js)</h5>
         </Row>
         <div id="container3" />
         <br />

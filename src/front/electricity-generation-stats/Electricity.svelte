@@ -398,6 +398,10 @@ async function search (sCountry, sYear, sInstalled_capacity_mw, sGeneration_gwh,
         <Button color="danger" on:click="{deleteALL}">
             Eliminar todo
         </Button>
+
+        <a href="#/electricity-generation-stats/electricity-graph"><Button outline color="primary">Ver gráficos</Button></a>
+
+
         <Button outline color="primary" on:click="{getPreviewPage}">
             Atrás
          </Button>

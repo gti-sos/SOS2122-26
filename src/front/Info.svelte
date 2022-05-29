@@ -126,6 +126,28 @@
                     <a href="https://sos2122-26.herokuapp.com/#/analytics">[https://sos2122-26.herokuapp.com/#/analytics]</a>
                 </p>
             </div>
+            <div>
+
+                
+                <h2 >
+                    Integraciones:
+                </h2>
+                
+                <p>
+                    <a href="https://sos2122-26.herokuapp.com/#/integrations">[https://sos2122-26.herokuapp.com/#/integratios]</a>
+                </p>
+            </div>
+            <div>
+
+                
+                <h2 >
+                    Videos:
+                </h2>
+                
+                <p>
+                    <a href="https://sos2122-26.herokuapp.com/#/about">[https://sos2122-26.herokuapp.com/#/about]</a>
+                </p>
+            </div>
         </div>
         <a class="home" href="/#"><i class="material-icons">home</i></a>
     </div>

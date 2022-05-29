@@ -11,6 +11,7 @@
 	import CommonGraph from "./CommonGraph.svelte";
 	import {Navbar,NavbarBrand,Nav,NavItem,NavLink } from 'sveltestrap';
 	import Integraciones from "./Integraciones.svelte";
+	import Videos from "./Videos.svelte";
 
 	//Integraciones Pablo
 	import DefenseGraph2 from "./defense-spent-stats/FusionGraphDefense.svelte";
@@ -41,7 +42,9 @@
 		"/defense-spent-stats/int-5" : Integration5,
 		"/defense-spent-stats/int-6" : Integration6,
 		"/defense-spent-stats/defense-graph-2" : DefenseGraph2,
-		"/integrations" : Integraciones
+		"/integrations" : Integraciones,
+		"/about" : Videos
+		
 	};
 </script>
 
